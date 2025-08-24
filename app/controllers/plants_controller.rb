@@ -35,6 +35,12 @@ class PlantsController < ApplicationController
     end
   end
 
+  def destroy
+    plant = Plant.find(params[:id])
+    plant.destroy!
+    redirect_to plants_path, status: :see_other, notice: '削除できました'
+  end
+
   private
   def plant_params
     params.require(:plant).permit(:name, :location, :remarks)

@@ -3,7 +3,7 @@
     %h1.plant_header-title 事業場詳細
     .plant_header-buttons
       = link_to '編集', edit_plant_path(@plant), class: 'plant-header_button btn btn-edit'
-      .plant-header_button.btn.btn-delete 削除
+      = link_to '削除', plant_path(@plant), data: { turbo_method: 'delete', turbo_confirm: '削除してもよろしいですか？' }, class: 'plant-header_button btn btn-delete'
   .plant_table-wrapper
     %table.plants-table
       %tbody
