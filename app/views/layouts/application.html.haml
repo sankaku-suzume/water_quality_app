@@ -13,5 +13,8 @@
     %link{:href => "/icon.svg", :rel => "icon", :type => "image/svg+xml"}/
     %link{:href => "/icon.png", :rel => "apple-touch-icon"}/
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    %link{rel: "preconnect", href: "https://fonts.googleapis.com"}
+    %link{rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true}
+    %link{href: "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap", rel: "stylesheet"}
   %body
     = yield

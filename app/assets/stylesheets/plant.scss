@@ -1,0 +1,56 @@
+/* 共通ボタン */
+.btn {
+  display: inline-block;
+  padding: 0.4em 0.8em;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+  margin-right: 0.3em;
+
+  &.btn-show { background-color: #6c757d; color: #fff; }
+  &.btn-show:hover { background-color: #5a6268; }
+
+  &.btn-edit { background-color: #007bff; color: #fff; }
+  &.btn-edit:hover { background-color: #0069d9; }
+
+  &.btn-delete { background-color: #dc3545; color: #fff; }
+  &.btn-delete:hover { background-color: #c82333; }
+
+  &.btn-new { background-color: #28a745; color: #fff; margin-top: 1rem; display: inline-block; }
+  &.btn-new:hover { background-color: #218838; }
+}
+
+/* テーブル */
+.plants-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  background-color: #fff;
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 0.5rem 0.8rem;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+}
+
+/* ページタイトル */
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
