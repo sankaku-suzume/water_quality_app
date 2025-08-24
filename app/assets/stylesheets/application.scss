@@ -5,6 +5,7 @@
 
 @import 'variables';
 @import 'plant';
+@import 'form';
 
 html {
   word-spacing: 1px;
@@ -37,9 +38,14 @@ body {
   color: $text-base-color;
   font-family: "Noto Sans JP", sans-serif;
   position: relative;
+  font-size: $font-normal;
 }
 
 .container {
   padding: 48px 16px;
   width: 100%;
+}
+
+.header {
+  margin-bottom: 32px;
 }
