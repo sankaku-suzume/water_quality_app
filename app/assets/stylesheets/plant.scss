@@ -7,6 +7,11 @@
   font-size: 0.9rem;
   transition: background-color 0.2s ease;
   margin-right: 0.3em;
+  font-weight: 600;
+  
+  &:hover {
+    cursor: pointer;
+  }
 
   &.btn-show { background-color: #6c757d; color: #fff; }
   &.btn-show:hover { background-color: #5a6268; }
@@ -50,7 +55,29 @@
 
 /* ページタイトル */
 h1 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+  font-size: 36px;
   color: #333;
+}
+
+/* showページ */
+.plant_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.plant_header-buttons {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.plant-header_button {
+}
+
+.plant_table-wrapper {
+  padding: 24px 0;
+}
+
+.plant_samples {
+  margin-top: 48px;
 }

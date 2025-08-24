@@ -1,0 +1,43 @@
+.container
+  .plant_header
+    %h1.plant_header-title 事業場詳細
+    .plant_header-buttons
+      .plant-header_button.btn.btn-edit 編集
+      .plant-header_button.btn.btn-delete 削除
+  .plant_table-wrapper
+    %table.plants-table
+      %tbody
+        %tr
+          %th 事業場名
+          %td= @plant.name
+        %tr
+          %th 所在地
+          %td= @plant.location
+        %tr
+          %th 備考
+          %td= @plant.remarks
+  .plant_samples
+    %h2 採水記録
+    -# - if @plant.samples.any?
+    -#   %table.samples-table
+    -#     %thead
+    -#       %tr
+    -#         %th 採水日
+    -#         %th 採水時間
+    -#         %th 備考
+    -#         %th 操作
+    -#     %tbody
+    -#       - @plant.samples.each do |sample|
+    -#         %tr
+    -#           %td= sample.date
+    -#           %td= sample.time
+    -#           %td= truncate(sample.remarks, length: 50)
+    -#           %td
+    -#             = link_to "詳細", plant_sample_path(@plant, sample), class: "btn btn-show"
+    -#             = link_to "編集", edit_plant_sample_path(@plant, sample), class: "btn btn-edit"
+    -#             = link_to "削除", plant_sample_path(@plant, sample), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-delete"
+    -# - else
+    -#   %p 採水記録はまだありません。
+
+  = link_to "事業場一覧に戻る", plants_path, class: "btn btn-new"
+  -# = link_to "新しい採水記録を追加", new_plant_sample_path(@plant), class: "btn btn-new"
