@@ -1,0 +1,24 @@
+.container
+  .plant_header.header
+    %h1.plant_header-title 事業場情報を編集
+
+  .form_wrapper
+    %ul
+      - @plant.errors.full_messages.each do |message|
+        %li= message
+    = form_with(model: @plant, local: true) do |f|
+      .form-group
+        = f.label :name, "事業場名"
+        = f.text_field :name, class: "form-control"
+
+      .form-group
+        = f.label :location, "所在地"
+        = f.text_field :location, class: "form-control"
+
+      .form-group
+        = f.label :remarks, "備考"
+        = f.text_area :remarks, class: "form-control", rows: 3
+
+      .form-actions
+        = f.submit "登録する", class: "btn btn-new"
+        = link_to "戻る", plant_path(@plant), class: "btn btn-edit"
