@@ -1,0 +1,18 @@
+.container
+  %h1 事業場一覧
+
+  %table.plants-table
+    %thead
+      %tr
+        %th 事業場名
+        %th 所在地
+
+    %tbody
+      - @plants.each do |plant|
+        %tr
+          %td
+            = link_to plant.name, plant_path(plant)
+          %td
+            = link_to plant.location, plant_path(plant)
+            
+  = link_to "新規作成", new_plant_path, class: "btn btn-new"

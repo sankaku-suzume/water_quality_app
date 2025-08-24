@@ -32,6 +32,7 @@ gem 'bootsnap', require: false
 
 gem 'hamlit'
 gem 'haml-rails', '~> 2.0'
+gem 'importmap-rails'
 gem 'sassc-rails'
 
 group :development, :test do

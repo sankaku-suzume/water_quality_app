@@ -1,0 +1,89 @@
+/* 共通ボタン */
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: $font-normal;
+  transition: background-color 0.2s ease;
+  margin-right: 8px;
+  font-weight: 600;
+  
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.btn-show { background-color: #6c757d; color: #fff; }
+  &.btn-show:hover { background-color: #5a6268; }
+
+  &.btn-edit { background-color: #007bff; color: #fff; }
+  &.btn-edit:hover { background-color: #0069d9; }
+
+  &.btn-delete { background-color: #dc3545; color: #fff; }
+  &.btn-delete:hover { background-color: #c82333; }
+
+  &.btn-new { background-color: #28a745; color: #fff; margin-top: 18px; display: inline-block; }
+  &.btn-new:hover { background-color: #218838; }
+}
+
+/* テーブル */
+.plants-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 18px;
+  font-size: $font-normal;
+  background-color: #fff;
+
+  th, td {
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+
+  th {
+    padding: 8px 12px;
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 8px 12px;
+  }
+}
+
+/* ページタイトル */
+h1 {
+  font-size: 36px;
+  color: #333;
+}
+
+/* showページ */
+.plant_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.plant_header-buttons {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.plant-header_button {
+}
+
+.plant_table-wrapper {
+}
+
+.plant_samples {
+  margin-top: 48px;
+}

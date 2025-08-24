@@ -1,1 +1,51 @@
-// Entry point for your Sass build
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+@import 'variables';
+@import 'plant';
+@import 'form';
+
+html {
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  max-width: 800px;
+  height: 100%;
+  margin: auto;
+  background-color: $base-bg-color;
+  font-size: 1em;
+  color: $text-base-color;
+  font-family: "Noto Sans JP", sans-serif;
+  position: relative;
+  font-size: $font-normal;
+}
+
+.container {
+  padding: 48px 16px;
+  width: 100%;
+}
+
+.header {
+  margin-bottom: 32px;
+}
