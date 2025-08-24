@@ -32,8 +32,8 @@ gem 'bootsnap', require: false
 
 gem 'hamlit'
 gem 'haml-rails', '~> 2.0'
-gem 'sassc-rails'
 gem 'importmap-rails'
+gem 'sassc-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
