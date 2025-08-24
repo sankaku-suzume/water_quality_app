@@ -11,4 +11,10 @@
 #
 class Plant < ApplicationRecord
   validates :name, presence: true
+  validates :name, uniqueness: true
+  validates :name, length: { maximum: 50 }
+
+  validates :location, length: { maximum: 50 }
+
+  validates :remarks, length: { maximum: 400 }
 end
