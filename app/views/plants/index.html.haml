@@ -6,15 +6,13 @@
       %tr
         %th 事業場名
         %th 所在地
-        %th 操作
+
     %tbody
       - @plants.each do |plant|
         %tr
-          %td= plant.name
-          %td= plant.location
           %td
-            = link_to "詳細", plant_path(plant), class: "btn btn-show"
-            = link_to "編集", edit_plant_path(plant), class: "btn btn-edit"
-            = link_to "削除", plant_path(plant), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-delete"
-
+            = link_to plant.name, plant_path(plant)
+          %td
+            = link_to plant.location, plant_path(plant)
+            
   = link_to "新規作成", new_plant_path, class: "btn btn-new"
