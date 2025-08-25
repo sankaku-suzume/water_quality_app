@@ -17,4 +17,6 @@ class Plant < ApplicationRecord
   validates :location, length: { maximum: 50 }
 
   validates :remarks, length: { maximum: 400 }
+
+  has_many :samples, dependent: :destroy
 end
