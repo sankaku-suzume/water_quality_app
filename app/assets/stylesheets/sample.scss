@@ -1,0 +1,32 @@
+@import 'variables';
+
+.sample_header {
+  margin-bottom: 24px;
+}
+
+.breadcrumbs {
+  margin: 16px 0;
+
+  a {
+    color: $text-link-color;
+    transition: opacity 0.3s ease;
+    
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  span {
+    margin-right: 10px;
+  }
+}
+
+.sample-table {
+  margin-top: 8px;
+
+  th {
+    width: 100px;
+    text-align: right;
+    padding: 4px 16px;
+  }
+}
