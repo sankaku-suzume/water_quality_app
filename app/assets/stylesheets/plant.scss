@@ -84,6 +84,64 @@ h1 {
 .plant_table-wrapper {
 }
 
+.plants-table.plants-show {
+  th {
+    width: 150px;
+  }
+
+  td {
+    padding: 8px 12px;
+  }
+}
+
 .plant_samples {
   margin-top: 48px;
+
+  .samples-table {
+    margin-top: 32px;
+    text-align: center;
+    table-layout: fixed;
+    border-collapse: collapse;
+    
+    th, td {
+      padding: 8px 0px;
+      border-bottom: 1px solid $text-gray-color;
+    }
+  
+    th {
+      &:first-child {
+        width: 100px;
+      }
+  
+      &:nth-child(2) {
+        width: 100px;
+      }
+  
+      &:nth-child(3) {
+        width: 350px;
+      }
+
+      &:nth-child(4) {
+        width: 205px;
+      }
+    }
+
+    td {
+      &:nth-child(3) {
+        width: 350px;
+        max-width: 350px;
+        overflow: hidden;
+
+        p {
+          width: 100%;
+          max-width: 100%;
+          text-align-last: left;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          margin: 0;
+        }
+      }
+    }
+  }
 }
