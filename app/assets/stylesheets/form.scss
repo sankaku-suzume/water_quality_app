@@ -18,6 +18,11 @@ form {
     font-size: $font-normal;
   }
 
+  input[type='date'],
+  input[type='time'] {
+    font-size: $font-normal;
+  }
+
   textarea {
     height: 100px;
     font-weight: 400;

@@ -21,6 +21,15 @@
   }
 }
 
+.plant_samples-header {
+  display: flex;
+  justify-content: space-between;
+
+  .btn {
+    margin: 0 10px;
+  }
+}
+
 .sample-table {
   margin-top: 8px;
 

@@ -17,7 +17,9 @@
           %th 備考
           %td= @plant.remarks
   .plant_samples
-    %h2 採水記録
+    .plant_samples-header
+      %h2 採水記録
+      = link_to "新規作成", new_plant_sample_path(@plant), class: "btn btn-new"
     - if @samples.any?
       %table.samples-table
         %thead
