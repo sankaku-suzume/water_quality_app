@@ -38,7 +38,9 @@ class SamplesController < ApplicationController
   end
 
   def destroy
-    
+    sample = @plant.samples.find(params[:id])
+    sample.destroy!
+    redirect_to plant_path(@plant), status: :see_other, notice: '削除しました'
   end
 
   private
