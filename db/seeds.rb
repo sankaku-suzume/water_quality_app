@@ -15,9 +15,9 @@ plants.each do |plant|
     Sample.create!(
       plant: plant,
       sampling_date: Date.today - rand(1..30),   # 過去30日からランダム
-      sampling_time: Time.now.change(hour: rand(8..15), min: [0, 15, 30, 45].sample),
-      location: ["排水口A", "排水口B", "河川取水口"].sample,
-      inspector: ["田中", "佐藤", "鈴木", "高橋"].sample,
+      sampling_time: Time.now.change(hour: rand(8..15), min: [ 0, 15, 30, 45 ].sample),
+      location: [ "排水口A", "排水口B", "河川取水口" ].sample,
+      inspector: [ "田中", "佐藤", "鈴木", "高橋" ].sample,
       remarks: "サンプル#{i+1}（#{plant.name}）のテストデータです。"
     )
   end

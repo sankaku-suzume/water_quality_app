@@ -1,5 +1,5 @@
 class SamplesController < ApplicationController
-  before_action :set_plant, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :set_plant, only: [ :show, :new, :create, :edit, :update, :destroy ]
 
   def index
     @samples = Sample.all.order(sampling_date: :desc)
@@ -45,11 +45,10 @@ class SamplesController < ApplicationController
 
   private
   def sample_params
-    params.require(:sample).permit(:sampling_date, :sampling_time, :location, :inspector, :remarks )
+    params.require(:sample).permit(:sampling_date, :sampling_time, :location, :inspector, :remarks)
   end
 
   def set_plant
     @plant = Plant.find(params[:plant_id])
   end
-
 end
