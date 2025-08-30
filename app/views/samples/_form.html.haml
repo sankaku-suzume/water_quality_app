@@ -1,0 +1,32 @@
+= form_with(model: [plant, sample], local: true) do |f|
+  - if sample.errors.any?
+    #error_explanation
+      %h2= "#{sample.errors.count}件のエラーがあります"
+      %ul
+        - sample.errors.full_messages.each do |msg|
+          %li= msg
+
+  %table.form-table
+    .form-group
+      = f.label :sampling_date, "採水日"
+      = f.date_field :sampling_date, required: true
+
+    .form-group
+      = f.label :sampling_time, "採水時間"
+      = f.time_field :sampling_time, required: true
+
+    .form-group
+      = f.label :location, "採水場所"
+      = f.text_field :location, placeholder: "例: 浄化槽A"
+
+    .form-group
+      = f.label :inspector, "採水者"
+      = f.text_field :inspector, placeholder: "例: 田中太郎"
+
+    .form-group
+      = f.label :remarks, "備考"
+      = f.text_area :remarks, rows: 4
+
+  .form-actions
+    = f.submit "登録する", class: "btn btn-new"
+    = link_to "一覧へ戻る", plant_path(plant), class: "btn btn-show"

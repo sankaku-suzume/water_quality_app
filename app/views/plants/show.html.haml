@@ -5,7 +5,7 @@
       = link_to '編集', edit_plant_path(@plant), class: 'plant-header_button btn btn-edit'
       = link_to '削除', plant_path(@plant), data: { turbo_method: 'delete', turbo_confirm: '削除してもよろしいですか？' }, class: 'plant-header_button btn btn-delete'
   .plant_table-wrapper
-    %table.plants-table
+    %table.plants-table.plants-show
       %tbody
         %tr
           %th 事業場名
@@ -17,27 +17,25 @@
           %th 備考
           %td= @plant.remarks
   .plant_samples
-    %h2 採水記録
-    -# - if @plant.samples.any?
-    -#   %table.samples-table
-    -#     %thead
-    -#       %tr
-    -#         %th 採水日
-    -#         %th 採水時間
-    -#         %th 備考
-    -#         %th 操作
-    -#     %tbody
-    -#       - @plant.samples.each do |sample|
-    -#         %tr
-    -#           %td= sample.date
-    -#           %td= sample.time
-    -#           %td= truncate(sample.remarks, length: 50)
-    -#           %td
-    -#             = link_to "詳細", plant_sample_path(@plant, sample), class: "btn btn-show"
-    -#             = link_to "編集", edit_plant_sample_path(@plant, sample), class: "btn btn-edit"
-    -#             = link_to "削除", plant_sample_path(@plant, sample), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-delete"
-    -# - else
-    -#   %p 採水記録はまだありません。
+    .plant_samples-header
+      %h2 採水記録
+      = link_to "新規作成", new_plant_sample_path(@plant), class: "btn btn-new"
+    - if @samples.any?
+      .samples-table
+        .samples-table_header
+          .samples-table_row
+            .samples-table_date 採水日
+            .samples-table_time 採水時間
+            .samples-table_remarks 備考
+        .samples-table_data
+          - @samples.each do |sample|
+            = link_to plant_sample_path(@plant, sample), class: 'sample-table_link' do
+              .samples-table_row
+                .samples-table_date= l sample.sampling_date, format: :default
+                .samples-table_time= l sample.sampling_time, format: :time
+                .samples-table_remarks= sample.remarks
+    - else
+      %p 採水記録はまだありません。
 
   = link_to "事業場一覧に戻る", plants_path, class: "btn btn-new"
-  -# = link_to "新しい採水記録を追加", new_plant_sample_path(@plant), class: "btn btn-new"
+

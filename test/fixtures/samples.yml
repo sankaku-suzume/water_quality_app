@@ -1,0 +1,28 @@
+# == Schema Information
+#
+# Table name: samples
+#
+#  id            :bigint           not null, primary key
+#  inspector     :string
+#  location      :string
+#  remarks       :text
+#  sampling_date :date             not null
+#  sampling_time :time             not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  plant_id      :bigint           not null
+#
+# Indexes
+#
+#  index_samples_on_plant_id  (plant_id)
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value

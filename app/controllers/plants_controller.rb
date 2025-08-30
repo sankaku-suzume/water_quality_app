@@ -5,6 +5,7 @@ class PlantsController < ApplicationController
 
   def show
     @plant = Plant.find(params[:id])
+    @samples = @plant.samples.order(sampling_date: :desc)
   end
 
   def new

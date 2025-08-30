@@ -1,0 +1,49 @@
+@import 'variables';
+
+.sample_header {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sample_header-buttons {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.breadcrumbs {
+  margin: 16px 0;
+
+  a {
+    color: $text-link-color;
+    transition: opacity 0.3s ease;
+    
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  span {
+    margin-right: 10px;
+  }
+}
+
+.plant_samples-header {
+  display: flex;
+  justify-content: space-between;
+
+  .btn {
+    margin: 0 10px;
+  }
+}
+
+.sample-table {
+  margin-top: 8px;
+
+  th {
+    width: 100px;
+    text-align: right;
+    padding: 4px 16px;
+  }
+}

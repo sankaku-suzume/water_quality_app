@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_24_012851) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_25_115240) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,5 +20,17 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_24_012851) do
     t.string "name", null: false
     t.string "location"
     t.text "remarks"
+  end
+
+  create_table "samples", force: :cascade do |t|
+    t.bigint "plant_id", null: false
+    t.date "sampling_date", null: false
+    t.time "sampling_time", null: false
+    t.string "location"
+    t.string "inspector"
+    t.text "remarks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plant_id"], name: "index_samples_on_plant_id"
   end
 end
