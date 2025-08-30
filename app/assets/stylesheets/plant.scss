@@ -145,3 +145,47 @@ h1 {
     }
   }
 }
+
+.samples-table_header {
+  font-weight: 700;
+  text-align: center;
+
+  .samples-table_remarks{
+    text-align: center;
+  }
+}
+
+.samples-table_row {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 1px solid $text-gray-color;
+}
+
+.samples-table_data {
+  .samples-table_remarks {
+    text-align-last: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+.samples-table_date {
+  width: 100px;
+}
+
+.samples-table_time {
+  width: 100px;
+}
+
+.samples-table_remarks {
+  width: calc(100% - 200px);
+}
+
+.sample-table_link {
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #0069d9;
+  }
+}
