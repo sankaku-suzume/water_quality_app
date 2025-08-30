@@ -2,6 +2,14 @@
 
 .sample_header {
   margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sample_header-buttons {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
 }
 
 .breadcrumbs {

@@ -2,6 +2,9 @@
 .container
   .sample_header
     %h1 採水詳細
+    .sample_header-buttons
+      = link_to "編集", edit_plant_sample_path(@sample.plant, @sample), class: "btn btn-edit"
+      = link_to "削除", plant_sample_path(@sample.plant, @sample), method: :delete, data: { confirm: "この採水データを削除しますか？" }, class: "btn btn-delete"
 
   / パンくず
   %nav.breadcrumbs
@@ -34,7 +37,5 @@
 
   / 操作
   %div.actions
-    = link_to "編集", edit_plant_sample_path(@sample.plant, @sample), class: "btn btn-edit"
-    = link_to "削除", plant_sample_path(@sample.plant, @sample), method: :delete, data: { confirm: "この採水データを削除しますか？" }, class: "btn btn-delete"
-    = link_to "事業場へ戻る", plant_path(@sample.plant), class: "btn btn-show"
-    = link_to "採水一覧へ戻る", plant_samples_path(@sample.plant), class: "btn btn-show"
+    = link_to "事業場", plant_path(@sample.plant), class: "btn btn-show"
+    = link_to "採水一覧", plant_samples_path(@sample.plant), class: "btn btn-show"
