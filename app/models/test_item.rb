@@ -15,4 +15,8 @@
 class TestItem < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { maximum: 20 }
+  validates :standard_max, numericality: { allow_nil: true }
+  validates :standard_min, numericality: { allow_nil: true }
+  validates :detection_limit, numericality: { allow_nil: true }
+  validates :sort_order, numericality: { only_integer: true, allow_nil: true }
 end
