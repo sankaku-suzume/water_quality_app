@@ -1,0 +1,37 @@
+.container 
+  -# 検査項目マスタ 一覧（TestItems#index）
+
+  %h1 検査項目マスタ
+
+  %div.actions
+    = link_to "新規作成", new_test_item_path, class: "btn btn-new"
+
+  .test_items_table
+    .test_items-table_header
+      .test_items-table_row
+        .test_items-table_order 表示順
+        .test_items-table_name 名称
+        .test_items-table_unit 単位
+        .test_items-table_limit 定量下限値
+        .test_items-table_min 基準下限
+        .test_items-table_max 基準上限
+        .test_items-table_buttons 操作
+    .test_items-table_data
+      - if @test_items.any?
+        - @test_items.each do |item|
+          .test_items-table_row
+            .test_items-table_order= item.sort_order.presence || "-"
+            .test_items-table_name= item.name
+            .test_items-table_unit= item.unit.presence || "-"
+            .test_items-table_limit= item.detection_limit.presence || "-"
+            .test_items-table_min= item.standard_min.presence || "-"
+            .test_items-table_max= item.standard_max.presence || "-"
+            .test_items-table_buttons
+              = link_to "編集", edit_test_item_path(item), class: "btn btn-edit"
+              = link_to "削除", test_item_path(item), method: :delete, data: { confirm: "この検査項目を削除しますか？" }, class: "btn btn-delete"
+      - else
+        %tr
+          %td{ colspan: 6 } 登録済みの検査項目はありません。
+
+  / 任意: ページネーション（kaminari/pagy等を使う場合）
+  -# = paginate @test_items
