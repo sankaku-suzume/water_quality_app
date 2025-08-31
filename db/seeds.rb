@@ -8,17 +8,49 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-plants = Plant.all
+test_items = [
+  {
+    name: "水温",
+    unit: "℃",
+    detection_limit: 0.1,
+    standard_min: nil,
+    standard_max: nil
+  },
+  {
+    name: "pH",
+    unit: "-",
+    detection_limit: 0.1,
+    standard_min: 5.8,
+    standard_max: 8.6
+  },
+  {
+    name: "BOD",
+    unit: "mg/L",
+    detection_limit: 0.5,
+    standard_min: nil,
+    standard_max: 20.0
+  },
+  {
+    name: "SS",
+    unit: "mg/L",
+    detection_limit: 1.0,
+    standard_min: nil,
+    standard_max: 30.0
+  },
+  {
+    name: "大腸菌数",
+    unit: "CFU/100mL",
+    detection_limit: 1.0,
+    standard_min: nil,
+    standard_max: 1000.0
+  }
+]
 
-plants.each do |plant|
-  3.times do |i|
-    Sample.create!(
-      plant: plant,
-      sampling_date: Date.today - rand(1..30),   # 過去30日からランダム
-      sampling_time: Time.now.change(hour: rand(8..15), min: [ 0, 15, 30, 45 ].sample),
-      location: [ "排水口A", "排水口B", "河川取水口" ].sample,
-      inspector: [ "田中", "佐藤", "鈴木", "高橋" ].sample,
-      remarks: "サンプル#{i+1}（#{plant.name}）のテストデータです。"
-    )
+test_items.each do |item|
+  TestItem.find_or_create_by!(name: item[:name]) do |t|
+    t.unit = item[:unit]
+    t.detection_limit = item[:detection_limit]
+    t.standard_min = item[:standard_min]
+    t.standard_max = item[:standard_max]
   end
 end
