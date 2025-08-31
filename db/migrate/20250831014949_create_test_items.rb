@@ -6,6 +6,7 @@ class CreateTestItems < ActiveRecord::Migration[7.2]
       t.float :detection_limit
       t.float :standard_min
       t.float :standard_max
+      t.integer :sort_order
       t.timestamps
     end
   end

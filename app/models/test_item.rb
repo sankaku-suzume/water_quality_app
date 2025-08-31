@@ -5,6 +5,7 @@
 #  id              :bigint           not null, primary key
 #  detection_limit :float
 #  name            :string           not null
+#  sort_order      :integer
 #  standard_max    :float
 #  standard_min    :float
 #  unit            :string
