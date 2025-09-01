@@ -1,5 +1,4 @@
 class TestItemsController < ApplicationController
-
   def index
     @test_items = TestItem.all.order('sort_order')
   end
@@ -32,9 +31,14 @@ class TestItemsController < ApplicationController
     end
   end
 
+  def destroy
+    test_item = TestItem.find(params[:id])
+    test_item.destroy!
+    redirect_to test_items_path, status: :see_other, notice: '削除しました'
+  end
+
   private
   def test_item_params
     params.require(:test_item).permit(:name, :unit, :detection_limit, :standard_max, :standard_min, :sort_order)
   end
-
 end
