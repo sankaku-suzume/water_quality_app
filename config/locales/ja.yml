@@ -14,6 +14,13 @@ ja:
       sample:
         sampling_date: '採水日'
         sampling_time: '採水時間'
+      test_item:
+        name: '検査項目名'
+        unit: '単位'
+        detection_limit: '定量下限値'
+        standard_min: '基準下限'
+        standard_max: '基準上限'
+        sort_order: '表示順'
   date:
     abbr_day_names:
     - 日

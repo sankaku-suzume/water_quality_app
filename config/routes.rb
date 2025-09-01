@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   resources :plants do
     resources :samples
   end
+
+  resources :test_items
 end
