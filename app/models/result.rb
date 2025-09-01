@@ -15,4 +15,5 @@
 #  index_results_on_test_item_id  (test_item_id)
 #
 class Result < ApplicationRecord
+  validates :value, numericality: { allow_nil: true }
 end
