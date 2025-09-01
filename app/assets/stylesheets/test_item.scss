@@ -1,5 +1,11 @@
 @import 'variables';
 
+.test_items_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+
 .test_items-table_header {
   font-weight: 700;
   text-align: center;
