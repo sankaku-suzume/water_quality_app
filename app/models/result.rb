@@ -15,5 +15,8 @@
 #  index_results_on_test_item_id  (test_item_id)
 #
 class Result < ApplicationRecord
+  belongs_to :sample
+  belongs_to :test_item
+
   validates :value, numericality: { allow_nil: true }
 end

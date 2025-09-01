@@ -13,6 +13,9 @@
 #  updated_at      :datetime         not null
 #
 class TestItem < ApplicationRecord
+  has_many :results, dependent: :destroy
+  has_many :samples, through: :results
+
   validates :name, presence: true
   validates :name, length: { maximum: 20 }
   validates :standard_max, numericality: { allow_nil: true }

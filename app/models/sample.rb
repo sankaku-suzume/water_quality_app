@@ -18,6 +18,8 @@
 #
 class Sample < ApplicationRecord
   belongs_to :plant
+  has_many :results, dependent: :destroy
+  has_many :test_items, through: :results
 
   validates :sampling_date, presence: true
   validates :sampling_time, presence: true
