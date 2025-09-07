@@ -61,3 +61,7 @@
   %div.actions
     = link_to "事業場", plant_path(@sample.plant), class: "btn btn-show"
     = link_to "採水一覧", plant_samples_path(@sample.plant), class: "btn btn-show"
+
+  %div{ data: { controller: "hello" } }
+    Stimulus 動作確認
+
