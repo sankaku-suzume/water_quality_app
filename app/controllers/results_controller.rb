@@ -1,6 +1,6 @@
 class ResultsController < ApplicationController
-  before_action :set_sample, only: [ :new, :create, :edit, :update ]
-  before_action :set_test_items, only: [ :new, :create, :edit, :update ]
+  before_action :set_sample, only: [ :new, :create, :edit, :update, :destroy ]
+  before_action :set_test_items, only: [ :new, :create, :edit, :update, :destroy ]
 
   def new
     @result = @sample.results.build
@@ -28,6 +28,12 @@ class ResultsController < ApplicationController
       flash.now[:error] = '変更に失敗しました'
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    result = Result.find(params[:id])
+    result.destroy!
+    redirect_to plant_sample_path(@sample.plant, @sample), notice: '削除しました'
   end
 
   private

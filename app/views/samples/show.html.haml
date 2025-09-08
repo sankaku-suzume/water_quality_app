@@ -54,7 +54,7 @@
         .sample-result_standard_max= result.test_item.standard_max.presence || "-"
         .sample-result_buttons
           = link_to "編集", edit_plant_sample_result_path(result.sample.plant, result.sample, result), class: "btn btn-edit"
-          = link_to "削除", plant_sample_result_path(result.sample.plant, result.sample, result), method: :delete, data: { confirm: "この検査結果を削除しますか？" }, class: "btn btn-delete"
+          = link_to "削除", plant_sample_result_path(result.sample.plant, result.sample, result), data: {turbo_method: :delete, turbo_confirm: "この検査結果を削除しますか？" }, class: "btn btn-delete"
 
 
   / 操作
