@@ -7,6 +7,7 @@ class SamplesController < ApplicationController
 
   def show
     @sample = @plant.samples.find(params[:id])
+    @results = @sample.results.all
   end
 
   def new

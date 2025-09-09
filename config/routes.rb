@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :plants do
-    resources :samples
+    resources :samples do
+      resources :results, only: [ :new, :create, :edit, :update, :destroy ]
+    end
   end
 
   resources :test_items
