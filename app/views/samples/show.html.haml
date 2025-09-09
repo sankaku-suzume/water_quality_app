@@ -4,7 +4,7 @@
     %h1 採水詳細
     .sample_header-buttons
       = link_to "編集", edit_plant_sample_path(@sample.plant, @sample), class: "btn btn-edit"
-      = link_to "削除", plant_sample_path(@sample.plant, @sample), method: :delete, data: { confirm: "この採水データを削除しますか？" }, class: "btn btn-delete"
+      = link_to "削除", plant_sample_path(@sample.plant, @sample), data: {turbo_method: :delete, turbo_confirm: "この採水データを削除しますか？" }, class: "btn btn-delete"
 
   / パンくず
   %nav.breadcrumbs
