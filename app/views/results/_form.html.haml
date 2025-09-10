@@ -1,20 +1,21 @@
-= form_with(model: [plant, sample, result], local: true) do |f|
-  - if result.errors.any?
-    #error_explanation
-      %h2= "#{result.errors.count}件のエラーがあります"
-      %ul
-        - result.errors.full_messages.each do |msg|
-          %li= msg
+= turbo_frame_tag result do
+  = form_with(model: [plant, sample, result], local: true) do |f|
+    - if result.errors.any?
+      #error_explanation
+        %h2= "#{result.errors.count}件のエラーがあります"
+        %ul
+          - result.errors.full_messages.each do |msg|
+            %li= msg
 
-  %table.form-table
-    .form-group
-      = f.label :test_item_id, "検査項目"
-      = f.collection_select :test_item_id, test_items, :id, :name
+    %table.form-table
+      .form-group
+        = f.label :test_item_id, "検査項目"
+        = f.collection_select :test_item_id, test_items, :id, :name
 
-    .form-group
-      = f.label :value, "測定値"
-      = f.number_field :value, step: :any
+      .form-group
+        = f.label :value, "測定値"
+        = f.number_field :value, step: :any
 
-  .form-actions
-    = f.submit "登録する", class: "btn btn-new"
-    = link_to "一覧へ戻る", plant_sample_path(plant, sample), class: "btn btn-show"
+    .form-actions
+      = f.submit "登録する", class: "btn btn-new"
+      = link_to "一覧へ戻る", plant_sample_path(plant, sample), class: "btn btn-show"
