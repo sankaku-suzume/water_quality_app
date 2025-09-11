@@ -23,7 +23,7 @@ class ResultsController < ApplicationController
   def update
     @result = Result.find(params[:id])
     if @result.update(result_params)
-      redirect_to plant_sample_path(@sample.plant, @sample), notice: '変更しました'
+      flash.now.notice = '変更しました'
     else
       flash.now[:error] = '変更に失敗しました'
       render :edit, status: :unprocessable_entity
