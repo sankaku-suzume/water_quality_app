@@ -9,7 +9,7 @@ class ResultsController < ApplicationController
   def create
     @result = @sample.results.build(result_params)
     if @result.save
-      redirect_to plant_sample_path(@sample.plant, @sample), notice: '保存しました'
+      flash.now.notice = '保存しました'
     else
       flash.now[:error] = '保存に失敗しました'
       render :new, status: :unprocessable_entity
