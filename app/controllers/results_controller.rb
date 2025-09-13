@@ -31,9 +31,9 @@ class ResultsController < ApplicationController
   end
 
   def destroy
-    result = Result.find(params[:id])
-    result.destroy!
-    redirect_to plant_sample_path(@sample.plant, @sample), notice: '削除しました'
+    @result = Result.find(params[:id])
+    @result.destroy!
+    flash.now.notice = '削除しました'
   end
 
   private
