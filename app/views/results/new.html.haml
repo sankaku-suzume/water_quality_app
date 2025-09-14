@@ -11,4 +11,5 @@
     %span ›
     %span 新規登録
 
-  = render 'form', plant: @sample.plant, sample: @sample, result: @result, test_items: @test_items
+  = render 'commons/modal', title: '新規登録' do
+    = render 'form', plant: @sample.plant, sample: @sample, result: @result, test_items: @test_items

@@ -36,7 +36,7 @@
 
   .sample_results-header 
     %h2.sample_results-heading 検査結果
-    = link_to "新規作成", new_plant_sample_result_path(@sample.plant, @sample), class: "btn btn-new", data: { turbo_frame: 'new_result' }
+    = link_to "新規作成", new_plant_sample_result_path(@sample.plant, @sample), class: "btn btn-new", data: { turbo_frame: 'modal' }
   - if @results.any?
     .sample_results
       .sample_result.sample_result-heading
@@ -48,7 +48,6 @@
         .sample-result_standard_max 基準上限
         .sample-result_buttons 操作
 
-      = turbo_frame_tag 'new_result'
       %div#results
         - @results.each do |result|
           = render 'result', result: result
