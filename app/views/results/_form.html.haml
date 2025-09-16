@@ -1,5 +1,5 @@
 = turbo_frame_tag result do
-  = form_with(model: [plant, sample, result], data: { action: 'turbo:submit-end->modal#close' }) do |f|
+  = form_with(model: [plant, sample, result], data: { controller: "select", action: 'turbo:submit-end->modal#close' }) do |f|
     - if result.errors.any?
       #error_explanation
         %h2= "#{result.errors.count}件のエラーがあります"
@@ -10,11 +10,12 @@
     %table.form-table
       .form-group
         = f.label :test_item_id, "検査項目"
-        = f.collection_select :test_item_id, test_items, :id, :name
+        = f.collection_select :test_item_id, test_items, :id, :name, {}, data: { action: "change->select#change", "select-target": "testItem"}
 
       .form-group
         = f.label :value, "測定値"
         = f.number_field :value, step: :any
+        .result-form_unit 単位を表示
 
     .form-actions
       = f.submit "登録する", class: "btn btn-new"
