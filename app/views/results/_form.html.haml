@@ -15,7 +15,9 @@
       .form-group
         = f.label :value, "測定値"
         = f.number_field :value, step: :any
-        .result-form_unit 単位を表示
+        .result-form_unit-wrapper
+          - test_items.each do |test_item|
+            .result-form_unit.hidden{id: "result-form_unit-test_item_id#{test_item.id}"}= test_item.unit
 
     .form-actions
       = f.submit "登録する", class: "btn btn-new"
