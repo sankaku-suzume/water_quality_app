@@ -7,14 +7,14 @@
           - result.errors.full_messages.each do |msg|
             %li= msg
 
-    %table.form-table
+    .form_groups
       .form-group
         = f.label :test_item_id, "検査項目"
-        = f.collection_select :test_item_id, test_items, :id, :name, {}, data: { action: "change->select#change", "select-target": "testItem"}
+        = f.collection_select :test_item_id, test_items, :id, :name, { include_blank: "選択してください" }, data: { action: "change->select#change", "select-target": "testItem"}, class: "result-form_test_item_select"
 
       .form-group
         = f.label :value, "測定値"
-        = f.number_field :value, step: :any
+        = f.number_field :value, step: :any, class: "result-form_value_input"
         .result-form_unit-wrapper
           - test_items.each do |test_item|
             .result-form_unit.hidden{id: "result-form_unit-test_item_id#{test_item.id}"}= test_item.unit

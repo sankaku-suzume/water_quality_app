@@ -46,6 +46,6 @@ class ResultsController < ApplicationController
   end
 
   def set_test_items
-    @test_items = TestItem.all
+    @test_items = TestItem.all.order(:sort_order)
   end
 end
