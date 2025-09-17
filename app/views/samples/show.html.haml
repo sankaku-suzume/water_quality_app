@@ -37,22 +37,21 @@
   .sample_results-header 
     %h2.sample_results-heading 検査結果
     = link_to "新規作成", new_plant_sample_result_path(@sample.plant, @sample), class: "btn btn-new", data: { turbo_frame: 'modal' }
-  - if @results.any?
-    .sample_results
-      .sample_result.sample_result-heading
-        .sample-result_name 検査項目名
-        .sample-result_value 測定値
-        .sample-result_unit 単位
-        .sample-result_detection_limit 定量下限値
-        .sample-result_standard_min 基準下限
-        .sample-result_standard_max 基準上限
-        .sample-result_buttons 操作
+  .sample_results
+    .sample_result.sample_result-heading
+      .sample-result_name 検査項目名
+      .sample-result_value 測定値
+      .sample-result_unit 単位
+      .sample-result_detection_limit 定量下限値
+      .sample-result_standard_min 基準下限
+      .sample-result_standard_max 基準上限
+      .sample-result_buttons 操作
 
-      %div#results
-        - @results.each do |result|
-          = render 'result', result: result
-  - else
-    %p 検査結果はまだありません。
+    %div#results
+      - @results.each do |result|
+        = render 'result', result: result
+    - unless @results.any?
+      %p 検査結果はまだありません
 
   / 操作
   %div.actions
