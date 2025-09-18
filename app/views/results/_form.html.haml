@@ -1,20 +1,24 @@
-= form_with(model: [plant, sample, result], local: true) do |f|
-  - if result.errors.any?
-    #error_explanation
-      %h2= "#{result.errors.count}件のエラーがあります"
-      %ul
-        - result.errors.full_messages.each do |msg|
-          %li= msg
+= turbo_frame_tag result do
+  = form_with(model: [plant, sample, result], data: { controller: "select", action: 'turbo:submit-end->modal#close' }) do |f|
+    - if result.errors.any?
+      #error_explanation
+        %h2= "#{result.errors.count}件のエラーがあります"
+        %ul
+          - result.errors.full_messages.each do |msg|
+            %li= msg
 
-  %table.form-table
-    .form-group
-      = f.label :test_item_id, "検査項目"
-      = f.collection_select :test_item_id, test_items, :id, :name
+    .form_groups
+      .form-group
+        = f.label :test_item_id, "検査項目"
+        = f.collection_select :test_item_id, test_items, :id, :name, { include_blank: "選択してください" }, data: { action: "change->select#change", "select-target": "testItem"}, class: "result-form_test_item_select"
 
-    .form-group
-      = f.label :value, "測定値"
-      = f.number_field :value, step: :any
+      .form-group
+        = f.label :value, "測定値"
+        = f.number_field :value, step: :any, class: "result-form_value_input"
+        .result-form_unit-wrapper
+          - test_items.each do |test_item|
+            .result-form_unit.hidden{id: "result-form_unit-test_item_id#{test_item.id}"}= test_item.unit
 
-  .form-actions
-    = f.submit "登録する", class: "btn btn-new"
-    = link_to "一覧へ戻る", plant_sample_path(plant, sample), class: "btn btn-show"
+    .form-actions
+      = f.submit "登録する", class: "btn btn-new"
+

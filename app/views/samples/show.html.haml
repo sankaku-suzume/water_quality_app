@@ -36,31 +36,22 @@
 
   .sample_results-header 
     %h2.sample_results-heading 検査結果
-    = link_to "新規作成", new_plant_sample_result_path(@sample.plant, @sample), class: "btn btn-new"
-  - if @results.any?
-    .sample_results
-      .sample_result.sample_result-heading
-        .sample-result_name 検査項目名
-        .sample-result_value 測定値
-        .sample-result_unit 単位
-        .sample-result_detection_limit 定量下限値
-        .sample-result_standard_min 基準下限
-        .sample-result_standard_max 基準上限
-        .sample-result_buttons 操作
+    = link_to "新規作成", new_plant_sample_result_path(@sample.plant, @sample), class: "btn btn-new", data: { turbo_frame: 'modal' }
+  .sample_results
+    .sample_result.sample_result-heading
+      .sample-result_name 検査項目名
+      .sample-result_value 測定値
+      .sample-result_unit 単位
+      .sample-result_detection_limit 定量下限値
+      .sample-result_standard_min 基準下限
+      .sample-result_standard_max 基準上限
+      .sample-result_buttons 操作
 
+    %div#results
       - @results.each do |result|
-        .sample_result
-          .sample-result_name= result.test_item.name
-          .sample-result_value= result.value
-          .sample-result_unit= result.test_item.unit.presence || "-"
-          .sample-result_detection_limit= result.test_item.detection_limit.presence || "-"
-          .sample-result_standard_min= result.test_item.standard_min.presence || "-"
-          .sample-result_standard_max= result.test_item.standard_max.presence || "-"
-          .sample-result_buttons
-            = link_to "編集", edit_plant_sample_result_path(result.sample.plant, result.sample, result), class: "btn btn-edit"
-            = link_to "削除", plant_sample_result_path(result.sample.plant, result.sample, result), data: {turbo_method: :delete, turbo_confirm: "この検査結果を削除しますか？" }, class: "btn btn-delete"
-  - else
-    %p 検査結果はまだありません。
+        = render 'result', result: result
+    - unless @results.any?
+      %p 検査結果はまだありません
 
   / 操作
   %div.actions

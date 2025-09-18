@@ -1,0 +1,4 @@
+= turbo_stream.prepend 'results' do
+  = render partial: 'samples/result', locals: {result: @result}
+= turbo_stream.update Result.new, ''
+= turbo_stream_flash

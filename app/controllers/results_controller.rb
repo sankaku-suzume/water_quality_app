@@ -9,7 +9,7 @@ class ResultsController < ApplicationController
   def create
     @result = @sample.results.build(result_params)
     if @result.save
-      redirect_to plant_sample_path(@sample.plant, @sample), notice: '保存しました'
+      flash.now.notice = '保存しました'
     else
       flash.now[:error] = '保存に失敗しました'
       render :new, status: :unprocessable_entity
@@ -23,7 +23,7 @@ class ResultsController < ApplicationController
   def update
     @result = Result.find(params[:id])
     if @result.update(result_params)
-      redirect_to plant_sample_path(@sample.plant, @sample), notice: '変更しました'
+      flash.now.notice = '変更しました'
     else
       flash.now[:error] = '変更に失敗しました'
       render :edit, status: :unprocessable_entity
@@ -31,9 +31,9 @@ class ResultsController < ApplicationController
   end
 
   def destroy
-    result = Result.find(params[:id])
-    result.destroy!
-    redirect_to plant_sample_path(@sample.plant, @sample), notice: '削除しました'
+    @result = Result.find(params[:id])
+    @result.destroy!
+    flash.now.notice = '削除しました'
   end
 
   private
@@ -46,6 +46,6 @@ class ResultsController < ApplicationController
   end
 
   def set_test_items
-    @test_items = TestItem.all
+    @test_items = TestItem.all.order(:sort_order)
   end
 end

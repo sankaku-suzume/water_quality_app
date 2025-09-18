@@ -1,14 +1,11 @@
-/*
- *= require_tree .
- *= require_self
- */
-
 @import 'variables';
 @import 'plant';
 @import 'form';
 @import 'sample';
 @import 'flash';
 @import 'test_item';
+@import 'modal';
+@import 'result';
 
 html {
   word-spacing: 1px;
@@ -55,4 +52,8 @@ body {
 
 .actions {
   margin: 16px 0;
+}
+
+.hidden {
+  display: none;
 }

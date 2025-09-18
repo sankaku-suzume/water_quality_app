@@ -1,0 +1,183 @@
+// _modal.scss
+// Simple accessible modal styles (no Bootstrap dependency)
+
+$modal-z-index: 1000;
+$backdrop-bg: rgba(0, 0, 0, 0.45);
+$modal-max-width: 800px;
+$modal-radius: 8px;
+$modal-header-border: #ececec;
+$modal-shadow: 0 10px 30px rgba(15, 15, 15, 0.15);
+$modal-padding: 1rem;
+$transition-fast: 180ms;
+$transition-medium: 260ms;
+
+.turbo-frame#modal {
+  // ensure frame itself does not create layout issues
+  position: fixed;
+  inset: 0;
+  pointer-events: none; // children control pointer-events when visible
+  z-index: $modal-z-index;
+}
+
+// Root modal element (hidden by default)
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;                // hidden by default
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  z-index: $modal-z-index;
+  pointer-events: none;         // block pointer events until shown
+  outline: 0;
+
+  // backdrop implemented via pseudo element
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: $backdrop-bg;
+    opacity: 0;
+    transition: opacity $transition-fast ease;
+    pointer-events: none;
+    z-index: ($modal-z-index - 1);
+  }
+
+  // Visible state — add .show to display
+  &.show {
+    display: flex;
+    pointer-events: auto;
+
+    &::before {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  // optional fade animation class on the root — handled on dialog
+  &.fade {
+    .modal-dialog {
+      transform: translateY(-8px) scale(0.995);
+      opacity: 0;
+      transition: transform $transition-medium cubic-bezier(.2,.8,.2,1), opacity $transition-medium;
+    }
+    &.show .modal-dialog {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+/* dialog */
+.modal-dialog {
+  position: relative;
+  max-width: $modal-max-width;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  z-index: $modal-z-index;
+  transform-origin: center;
+}
+
+/* content box */
+.modal-content {
+  background: #ffffff;
+  border-radius: $modal-radius;
+  box-shadow: $modal-shadow;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lighten($modal-header-border, 2%);
+}
+
+/* header */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $modal-padding;
+  border-bottom: 1px solid $modal-header-border;
+  background: transparent;
+
+  .modal-title {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #222;
+  }
+}
+
+/* close button */
+.btn-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  color: #333;
+
+  &:hover {
+    background: rgba(0,0,0,0.04);
+  }
+
+  &:focus {
+    outline: 2px solid rgba(33, 150, 243, 0.25);
+    outline-offset: 2px;
+  }
+
+  // draw "×" icon with pseudo elements (no external image)
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 2px;
+    background: currentColor;
+    display: block;
+  }
+  &::before {
+    transform: rotate(45deg);
+  }
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
+
+/* body */
+.modal-body {
+  padding: $modal-padding;
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-height: 70vh;
+  overflow: auto;
+}
+
+/* footer (optional) */
+.modal-footer {
+  padding: $modal-padding;
+  border-top: 1px solid $modal-header-border;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+/* small screens adjustments */
+@media (max-width: 600px) {
+  .modal {
+    padding: 0.75rem;
+  }
+  .modal-dialog {
+    max-width: 100%;
+  }
+  .modal-body {
+    max-height: 60vh;
+  }
+}

@@ -7,7 +7,7 @@ class SamplesController < ApplicationController
 
   def show
     @sample = @plant.samples.find(params[:id])
-    @results = @sample.results.all
+    @results = @sample.results.joins(:test_item).order('sort_order')
   end
 
   def new
