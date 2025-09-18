@@ -1,0 +1,8 @@
+.container
+  %h1 水質検査データベース
+  %h2 最近の検体
+  .recent_samples
+    - @recent_samples.each do |sample|
+      .recent_sample
+        .sample_date= sample.sampling_date
+        .sample_plant= sample.plant.name
