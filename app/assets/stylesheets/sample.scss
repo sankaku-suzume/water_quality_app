@@ -1,5 +1,37 @@
 @import 'variables';
 
+// sample#index
+.samples_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.samples_samples {
+  margin-top: 32px;
+  padding: 16px 32px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.samples_sample {
+  font-size: 20px;
+  padding: 2px;
+  border-bottom: 1px solid #EEE;
+  margin-top: 4px;
+  color: #0a66b6;
+  a {
+    display: flex;
+    gap: 16px;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+// sample#show
 .sample_header {
   margin-bottom: 24px;
   display: flex;

@@ -18,7 +18,7 @@
           %td= @plant.remarks
   .plant_samples
     .plant_samples-header
-      %h2 採水記録
+      %h2 検体一覧
       = link_to "新規作成", new_plant_sample_path(@plant), class: "btn btn-new"
     - if @samples.any?
       .samples-table
