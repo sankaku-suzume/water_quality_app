@@ -1,8 +1,39 @@
 .container
-  %h1 水質検査データベース
-  %h2 最近の検体
-  .recent_samples
-    - @recent_samples.each do |sample|
-      .recent_sample
-        .sample_date= sample.sampling_date
-        .sample_plant= sample.plant.name
+  %h1 水質検査データ管理システム
+  .recent_samples_wrapper
+    %h2 最近の検体
+    .recent_samples
+      - @recent_samples.each do |sample|
+        .recent_sample
+          = link_to plant_sample_path(sample.plant, sample) do
+            .sample_date= l(sample.sampling_date, format: :long)
+            .sample_plant= sample.plant.name
+  .dashboard_menu
+    .dashboard-menu_content
+      .dashboard-content_img
+        = image_tag 'plant.png'
+      %h3.dashboard-content_title 事業場管理
+      %p.dashboard-content_text 検査対象の事業場情報を管理
+      .dashboard-content_btn
+        = link_to '事業場一覧へ', plants_path
+    .dashboard-menu_content
+      .dashboard-content_img
+        = image_tag 'test_item.png'
+      %h3.dashboard-content_title 検査項目マスタ
+      %p.dashboard-content_text 測定する検査項目を設定・管理
+      .dashboard-content_btn
+        = link_to '検査項目一覧へ', test_items_path
+    .dashboard-menu_content
+      .dashboard-content_img
+        = image_tag 'database.png'
+      %h3.dashboard-content_title データ入力
+      %p.dashboard-content_text 検査結果を入力・記録
+      .dashboard-content_btn
+        = link_to '検体一覧へ', plants_path
+    .dashboard-menu_content
+      .dashboard-content_img
+        = image_tag 'graph.png'
+      %h3.dashboard-content_title データ分析
+      %p.dashboard-content_text 検査データの経年変化など
+      .dashboard-content_btn
+        = link_to '表示画面へ', plants_path
