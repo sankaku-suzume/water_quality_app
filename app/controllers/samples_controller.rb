@@ -11,16 +11,31 @@ class SamplesController < ApplicationController
   end
 
   def new
-    @sample = @plant.samples.build
+    if @plant
+      @sample = @plant.samples.build
+    else
+      @sample = Sample.build
+      @plants = Plant.all.order(Arel.sql('name COLLATE "japanese"'))
+    end
   end
 
   def create
-    @sample = @plant.samples.build(sample_params)
-    if @sample.save
-      redirect_to plant_sample_path(@plant, @sample), notice: '保存しました'
+    if @plant
+      @sample = @plant.samples.build(sample_params)
+      if @sample.save
+        redirect_to plant_sample_path(@plant, @sample), notice: '保存しました'
+      else
+        flash.now[:error] = '保存に失敗しました'
+        render :new, status: :unprocessable_entity
+      end
     else
-      flash.now[:error] = '保存に失敗しました'
-      render :new, status: :unprocessable_entity
+      @sample = Sample.build(sample_params)
+      if @sample.save
+        redirect_to plant_sample_path(@sample.plant, @sample), notice: '保存しました'
+      else
+        flash.now[:error] = '保存に失敗しました'
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
@@ -46,10 +61,10 @@ class SamplesController < ApplicationController
 
   private
   def sample_params
-    params.require(:sample).permit(:sampling_date, :sampling_time, :location, :inspector, :remarks)
+    params.require(:sample).permit(:plant_id, :sampling_date, :sampling_time, :location, :inspector, :remarks)
   end
 
   def set_plant
-    @plant = Plant.find(params[:plant_id])
+    @plant = Plant.find(params[:plant_id]) if params[:plant_id]
   end
 end
