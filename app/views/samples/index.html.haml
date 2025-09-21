@@ -9,3 +9,4 @@
         = link_to plant_sample_path(sample.plant, sample) do
           .sample_date= l(sample.sampling_date, format: :long)
           .sample_plant= sample.plant.name
+    = paginate @samples

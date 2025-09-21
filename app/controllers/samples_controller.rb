@@ -2,7 +2,7 @@ class SamplesController < ApplicationController
   before_action :set_plant, only: [ :show, :new, :create, :edit, :update, :destroy ]
 
   def index
-    @samples = Sample.all.order(sampling_date: :desc)
+    @samples = Sample.all.order(sampling_date: :desc).page(params[:page]).per(25)
   end
 
   def show
