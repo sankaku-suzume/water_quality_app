@@ -1,3 +1,41 @@
+// show
+.result_subtitle {
+  margin-top: 24px;
+}
+
+.result_recent_results {
+  margin-top: 8px;
+  padding: 16px;
+}
+
+.result-recent_results_table-wrapper {
+  padding: 8px 16px;
+
+}
+
+.result-recent_results_table {
+  border-collapse: collapse;
+
+  th,
+  td {
+    border: 1px solid #333;
+    padding: 2px 4px;
+    width: 100px;
+  }
+  
+  td {
+    text-align: right;
+
+  }
+}
+
+.result_chart {
+  background-color: #FFF;
+  padding: 16px;
+  border-radius: 6px;
+  margin-top: 24px;
+}
+
 
 // form
 

@@ -4,7 +4,27 @@ class ResultsController < ApplicationController
 
   def show
     @result = Result.find(params[:id])
-    @past_results = Result.joins(:sample).where(test_item_id: @result.test_item_id, sample: { plant_id: @result.sample.plant_id }).order(sampling_date: :desc).limit(20)
+    @recent_results = Result.joins(:sample).where(test_item_id: @result.test_item_id, sample: { plant_id: @result.sample.plant_id }).order(sampling_date: :desc).limit(20)
+    label = @recent_results.pluck('sample.sampling_date').reverse
+    data = @recent_results.pluck(:value).reverse
+    @chart_data = {
+      labels: label,
+      datasets: [{
+        label: @result.test_item.name,
+        backgroundColor: '#3B82F6',
+        borderColor: '#3B82F6',
+        data: data
+      }]
+    }
+    @chart_options = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
   end
   def new
     @result = @sample.results.build
