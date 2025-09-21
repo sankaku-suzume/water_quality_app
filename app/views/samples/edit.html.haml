@@ -1,13 +1,11 @@
 .container
-  %h1 採水データ 編集
+  %h1 検体データ 編集
 
   / パンくず
   %nav.breadcrumbs
     = link_to "事業場一覧", plants_path
     %span ›
     = link_to @plant.name, plant_path(@plant)
-    %span ›
-    = link_to "採水一覧", plant_samples_path(@plant)
     %span ›
     = link_to @sample.sampling_date, plant_samples_path(@plant)
     %span ›

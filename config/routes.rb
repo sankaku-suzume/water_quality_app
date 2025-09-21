@@ -13,10 +13,12 @@ Rails.application.routes.draw do
   root 'dashboard#index'
 
   resources :plants do
-    resources :samples do
+    resources :samples, only: [ :show, :new, :create, :edit, :update, :destroy ] do
       resources :results, only: [ :new, :create, :edit, :update, :destroy ]
     end
   end
+
+  resources :samples, only: [ :index, :new, :create ]
 
   resources :test_items
 end

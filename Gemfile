@@ -37,6 +37,7 @@ gem 'importmap-rails'
 gem 'sassc-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
+gem 'kaminari'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
