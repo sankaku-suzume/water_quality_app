@@ -1,0 +1,14 @@
+.container
+  %h1 検査結果
+  %h2 #{@result.sample.plant.name} ＜#{@result.test_item.name}＞
+
+  %table
+    %tr
+      %th 採水日
+      %th 測定値
+      %th 単位
+    - @past_results.each do |result|
+      %tr
+        %td= result.sample.sampling_date
+        %td= result.value
+        %td= result.test_item.unit

@@ -7,5 +7,6 @@
     .sample-result_standard_min= result.test_item.standard_min.presence || "-"
     .sample-result_standard_max= result.test_item.standard_max.presence || "-"
     .sample-result_buttons
+      = link_to "詳細", plant_sample_result_path(result.sample.plant, result.sample, result), class: "btn btn-show", data: { turbo: false }
       = link_to "編集", edit_plant_sample_result_path(result.sample.plant, result.sample, result), class: "btn btn-edit", data: { turbo_frame: 'modal' }
       = link_to "削除", plant_sample_result_path(result.sample.plant, result.sample, result), data: {turbo_method: :delete, turbo_confirm: "この検査結果を削除しますか？" }, class: "btn btn-delete"

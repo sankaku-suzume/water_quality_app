@@ -2,6 +2,10 @@ class ResultsController < ApplicationController
   before_action :set_sample, only: [ :new, :create, :edit, :update, :destroy ]
   before_action :set_test_items, only: [ :new, :create, :edit, :update, :destroy ]
 
+  def show
+    @result = Result.find(params[:id])
+    @past_results = Result.joins(:sample).where(test_item_id: @result.test_item_id, sample: { plant_id: @result.sample.plant_id }).order(sampling_date: :desc).limit(20)
+  end
   def new
     @result = @sample.results.build
   end
