@@ -15,12 +15,12 @@
       %table.result-recent_min-max-table
         %tr
           %th 平均値
-          %td= @result.average(@recent_results)
+          %td= average(@recent_results)
         %tr
           %th 最小値
-          %td= @result.minimum(@recent_results)
+          %td= minimum(@recent_results)
         %tr
           %th 最大値
-          %td= @result.maximum(@recent_results)
+          %td= maximum(@recent_results)
   .result_chart
     %canvas{ data: { controller: "chartjs", chartjs: { data: { value: @chart_data.to_json }, options: { value: @chart_options.to_json } } } }
