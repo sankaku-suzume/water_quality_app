@@ -21,6 +21,6 @@ module ResultsHelper
       value = result.value
       values.push(value)
     end
-    values
+    values.map(&:to_f)
   end
 end

@@ -13,7 +13,7 @@ class ResultsController < ApplicationController
         label: @result.test_item.name,
         backgroundColor: '#3B82F6',
         borderColor: '#3B82F6',
-        data: data
+        data: data.map(&:to_f)
       } ]
     }
     @chart_options = {
