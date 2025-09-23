@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :plants do
     resources :samples, only: [ :show, :new, :create, :edit, :update, :destroy ] do
-      resources :results, only: [ :new, :create, :edit, :update, :destroy ]
+      resources :results, only: [ :show, :new, :create, :edit, :update, :destroy ]
     end
   end
 

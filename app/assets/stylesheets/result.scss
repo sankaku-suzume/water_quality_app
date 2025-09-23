@@ -1,3 +1,53 @@
+// show
+.result_subtitle {
+  margin-top: 24px;
+}
+
+.result_recent_results {
+  margin-top: 8px;
+  padding: 16px;
+  background-color: #FFF;
+  border-radius: 6px;
+}
+
+.result-recent_results_table-wrapper {
+  padding: 8px 16px;
+  display: flex;
+  gap: 16px;
+
+}
+
+.result-recent_results_table,
+.result-recent_min-max-table {
+  border-collapse: collapse;
+
+  th,
+  td {
+    border: 1px solid #333;
+    padding: 2px 4px;
+    width: 100px;
+
+    &:nth-child(2) {
+      width: 180px;
+    }
+  }
+  
+  td {
+    text-align: right;
+  }
+}
+
+.result-recent_min-max-table {
+  margin-bottom: auto;
+}
+
+.result_chart {
+  background-color: #FFF;
+  padding: 16px;
+  border-radius: 6px;
+  margin-top: 24px;
+}
+
 
 // form
 

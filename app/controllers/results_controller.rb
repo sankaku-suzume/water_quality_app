@@ -2,6 +2,30 @@ class ResultsController < ApplicationController
   before_action :set_sample, only: [ :new, :create, :edit, :update, :destroy ]
   before_action :set_test_items, only: [ :new, :create, :edit, :update, :destroy ]
 
+  def show
+    @result = Result.find(params[:id])
+    @recent_results = Result.joins(:sample).where(test_item_id: @result.test_item_id, sample: { plant_id: @result.sample.plant_id }).order(sampling_date: :desc).limit(20)
+    label = @recent_results.pluck('sample.sampling_date').reverse
+    data = @recent_results.pluck(:value).reverse
+    @chart_data = {
+      labels: label,
+      datasets: [ {
+        label: @result.test_item.name,
+        backgroundColor: '#3B82F6',
+        borderColor: '#3B82F6',
+        data: data
+      } ]
+    }
+    @chart_options = {
+      scales: {
+        yAxes: [ {
+          ticks: {
+            beginAtZero: true
+          }
+        } ]
+      }
+    }
+  end
   def new
     @result = @sample.results.build
   end
