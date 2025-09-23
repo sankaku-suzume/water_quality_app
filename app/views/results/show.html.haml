@@ -2,15 +2,25 @@
   %h1.result_title 検査結果
   %h2.result_subtitle #{@result.sample.plant.name} ＜#{@result.test_item.name}＞
   .result_recent_results
-    %h3.result-recent_results_title 直近20検体の結果 (#{@result.test_item.unit})
+    %h3.result-recent_results_title 直近20検体の結果
     .result-recent_results_table-wrapper
       %table.result-recent_results_table
         %tr
           %th 採水日
-          %th 測定値
+          %th 測定値 (#{@result.test_item.unit})
         - @recent_results.each do |result|
           %tr
             %td= result.sample.sampling_date
             %td= result.value
+      %table.result-recent_min-max-table
+        %tr
+          %th 平均値
+          %td= @result.average(@recent_results)
+        %tr
+          %th 最小値
+          %td= @result.minimum(@recent_results)
+        %tr
+          %th 最大値
+          %td= @result.maximum(@recent_results)
   .result_chart
     %canvas{ data: { controller: "chartjs", chartjs: { data: { value: @chart_data.to_json }, options: { value: @chart_options.to_json } } } }
