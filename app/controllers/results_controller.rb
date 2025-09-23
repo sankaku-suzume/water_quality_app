@@ -9,20 +9,20 @@ class ResultsController < ApplicationController
     data = @recent_results.pluck(:value).reverse
     @chart_data = {
       labels: label,
-      datasets: [{
+      datasets: [ {
         label: @result.test_item.name,
         backgroundColor: '#3B82F6',
         borderColor: '#3B82F6',
         data: data
-      }]
+      } ]
     }
     @chart_options = {
       scales: {
-        yAxes: [{
+        yAxes: [ {
           ticks: {
             beginAtZero: true
           }
-        }]
+        } ]
       }
     }
   end

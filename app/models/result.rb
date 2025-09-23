@@ -19,5 +19,4 @@ class Result < ApplicationRecord
   belongs_to :test_item
 
   validates :value, numericality: { allow_nil: true }
-
 end
