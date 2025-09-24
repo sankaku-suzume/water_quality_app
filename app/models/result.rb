@@ -3,7 +3,7 @@
 # Table name: results
 #
 #  id           :bigint           not null, primary key
-#  value        :float
+#  value        :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  sample_id    :bigint           not null
