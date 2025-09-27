@@ -2,7 +2,7 @@ class PlantsController < ApplicationController
   def index
     plants_sort = Plant.all.order(Arel.sql('name COLLATE "japanese"'))
     @search = plants_sort.ransack(params[:q])
-    @plants = @search.result.all
+    @plants = @search.result.all.page(params[:page]).per(25)
   end
 
   def show
