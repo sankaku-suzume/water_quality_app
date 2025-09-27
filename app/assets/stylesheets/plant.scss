@@ -26,11 +26,79 @@
   &.btn-new:hover { background-color: #218838; }
 }
 
+// index
+.plants_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.plants-search_wrapper {
+  font-size: 20px;
+  background-color: #FFF;
+  padding: 16px 32px;
+  border-radius: 8px;
+  margin: 32px 0;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.plant_search {
+  display: flex;
+  justify-content: center;
+
+  input[type=search] {
+    font-size: 18px;
+    width: calc(50% - 56px);
+  }
+ }
+
+.plants-search_action {
+  margin-left: 8px;
+  
+  input[type=submit] {
+    font-size: 18px;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.plants_table {
+  font-size: 20px;
+  background-color: #FFF;
+  padding: 16px 32px 32px;
+  border-radius: 8px;
+  margin: 32px 0;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.plants-table_content {
+  a {
+    display: flex;
+    color: #0a66b6;
+    transition: opacity 0.3s ease;
+    padding: 2px;
+    border-bottom: 1px solid #EEE;
+    margin-top: 4px;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.plants-table_name,
+.plants-table_location {
+  width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
 /* テーブル */
 .plants-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 18px;
+  margin: 18px 0;
   font-size: $font-normal;
   background-color: #fff;
 
