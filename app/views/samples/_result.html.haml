@@ -1,5 +1,5 @@
 = turbo_frame_tag result do
-  .sample_result
+  %div{ class: [ 'sample_result', result.violated?] }
     .sample-result_name= result.test_item.name
     .sample-result_value= result.value
     .sample-result_unit= result.test_item.unit.presence || "-"
