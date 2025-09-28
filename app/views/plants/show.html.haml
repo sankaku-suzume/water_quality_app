@@ -4,18 +4,21 @@
     .plant_header-buttons
       = link_to '編集', edit_plant_path(@plant), class: 'plant-header_button btn btn-edit'
       = link_to '削除', plant_path(@plant), data: { turbo_method: 'delete', turbo_confirm: '削除してもよろしいですか？' }, class: 'plant-header_button btn btn-delete'
-  .plant_table-wrapper
-    %table.plants-table.plants-show
-      %tbody
-        %tr
-          %th 事業場名
-          %td= @plant.name
-        %tr
-          %th 所在地
-          %td= @plant.location
-        %tr
-          %th 備考
-          %td= @plant.remarks
+  .plant_info
+    %h2.plant-info_name= @plant.name
+    %p.plant-info_location= @plant.location
+    %p.plant-info_remarks= @plant.remarks
+    -# %table.plants-table.plants-show
+    -#   %tbody
+    -#     %tr
+    -#       %th 事業場名
+    -#       %td= @plant.name
+    -#     %tr
+    -#       %th 所在地
+    -#       %td= @plant.location
+    -#     %tr
+    -#       %th 備考
+    -#       %td= @plant.remarks
   .plant_samples
     .plant_samples-header
       %h2 検体一覧
@@ -37,5 +40,5 @@
     - else
       %p 採水記録はまだありません。
 
-  = link_to "事業場一覧に戻る", plants_path, class: "btn btn-new"
+  = link_to "事業場一覧に戻る", plants_path, class: "btn btn-show"
 
