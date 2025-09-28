@@ -1,5 +1,4 @@
 .container
-  .header
-    %h1 検査項目マスタ 編集
-
-  = render 'form', test_item: @test_item
+  %h1 検査項目マスタ 編集
+  .form_wrapper
+    = render 'form', test_item: @test_item

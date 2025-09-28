@@ -8,6 +8,7 @@
 @import 'result';
 @import 'dashboard';
 @import 'kaminari';
+@import 'header';
 
 html {
   word-spacing: 1px;
@@ -44,12 +45,9 @@ body {
 }
 
 .container {
-  padding: 48px 16px;
+  padding: 24px 16px;
   width: 100%;
-}
-
-.header {
-  margin-bottom: 32px;
+  margin-top: 64px;
 }
 
 .actions {

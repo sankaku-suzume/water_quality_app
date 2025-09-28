@@ -1,15 +1,4 @@
 .container
   %h1 検査結果 新規登録
-
-  / パンくず
-  %nav.breadcrumbs
-    = link_to "事業場一覧", plants_path
-    %span ›
-    = link_to @sample.plant.name, plant_path(@sample.plant.id)
-    %span ›
-    = link_to "採水詳細", plant_sample_path(@sample.plant.id, @sample.id)
-    %span ›
-    %span 新規登録
-
   = render 'commons/modal', title: '新規登録' do
     = render 'form', plant: @sample.plant, sample: @sample, result: @result, test_items: @test_items
