@@ -20,6 +20,7 @@
     %link{href: "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap", rel: "stylesheet"}
     %script{ src: "https://kit.fontawesome.com/453e727769.js", crossorigin: "anonymous" }
   %body
+    = render 'commons/header'
     %div#flash
       - if flash.present?
         = render 'commons/flash'

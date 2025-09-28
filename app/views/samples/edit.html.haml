@@ -1,14 +1,4 @@
 .container
   %h1 検体データ 編集
-
-  / パンくず
-  %nav.breadcrumbs
-    = link_to "事業場一覧", plants_path
-    %span ›
-    = link_to @plant.name, plant_path(@plant)
-    %span ›
-    = link_to @sample.sampling_date, plant_samples_path(@plant)
-    %span ›
-    %span 編集
-
-  = render 'form', plant: @plant, sample: @sample
+  .form_wrapper
+    = render 'form', plant: @plant, sample: @sample
