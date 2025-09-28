@@ -33,6 +33,7 @@ gem 'bootsnap', require: false
 gem 'active_decorator'
 gem 'bootstrap', '~> 5.2'
 gem 'chart-js-rails'
+gem 'devise'
 gem 'hamlit'
 gem 'haml-rails', '~> 2.0'
 gem 'importmap-rails'
@@ -41,7 +42,6 @@ gem 'ransack'
 gem 'sassc-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
-gem 'devise'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
