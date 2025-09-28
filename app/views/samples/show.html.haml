@@ -5,53 +5,44 @@
     .sample_header-buttons
       = link_to "編集", edit_plant_sample_path(@sample.plant, @sample), class: "btn btn-edit"
       = link_to "削除", plant_sample_path(@sample.plant, @sample), data: {turbo_method: :delete, turbo_confirm: "この検体データを削除しますか？" }, class: "btn btn-delete"
+  .sample-table_wrapper
+    %h2.sample_plant-name= @sample.plant.name
+    %table.sample-table
+      %tbody
+        %tr
+          %th 採水日
+          %td.sample-table_date= l(@sample.sampling_date, format: :long)
+        %tr
+          %th 採水時間
+          %td= @sample.sampling_time&.strftime("%H:%M")
+        %tr
+          %th 採水場所
+          %td= @sample.location
+        %tr
+          %th 採水者
+          %td= @sample.inspector
+        %tr
+          %th 備考
+          %td= @sample.remarks.present? ? simple_format(@sample.remarks) : "-"
+  .sample-results_wrapper
+    .sample_results-header 
+      %h2.sample_results-heading 検査結果
+      = link_to "新規作成", new_plant_sample_result_path(@sample.plant, @sample), class: "btn btn-new", data: { turbo_frame: 'modal' }
+    .sample_results
+      .sample_result.sample_result-heading
+        .sample-result_name 検査項目名
+        .sample-result_value 測定値
+        .sample-result_unit 単位
+        .sample-result_detection_limit 定量下限値
+        .sample-result_standard_min 基準下限
+        .sample-result_standard_max 基準上限
+        .sample-result_buttons 操作
 
-  / パンくず
-  %nav.breadcrumbs
-    = link_to "事業場一覧", plants_path
-    %span ›
-    = link_to @sample.plant.name, plant_path(@sample.plant)
-    %span ›
-    %span 検体詳細
-
-  %h2.sample_plant-name= @sample.plant.name
-
-  %table.sample-table
-    %tbody
-      %tr
-        %th 採水日
-        %td= l(@sample.sampling_date, format: :long)
-      %tr
-        %th 採水時間
-        %td= @sample.sampling_time&.strftime("%H:%M")
-      %tr
-        %th 採水場所
-        %td= @sample.location
-      %tr
-        %th 採水者
-        %td= @sample.inspector
-      %tr
-        %th 備考
-        %td= @sample.remarks.present? ? simple_format(@sample.remarks) : "-"
-
-  .sample_results-header 
-    %h2.sample_results-heading 検査結果
-    = link_to "新規作成", new_plant_sample_result_path(@sample.plant, @sample), class: "btn btn-new", data: { turbo_frame: 'modal' }
-  .sample_results
-    .sample_result.sample_result-heading
-      .sample-result_name 検査項目名
-      .sample-result_value 測定値
-      .sample-result_unit 単位
-      .sample-result_detection_limit 定量下限値
-      .sample-result_standard_min 基準下限
-      .sample-result_standard_max 基準上限
-      .sample-result_buttons 操作
-
-    %div#results
-      - @results.each do |result|
-        = render 'result', result: result
-    - unless @results.any?
-      %p 検査結果はまだありません
+      %div#results
+        - @results.each do |result|
+          = render 'result', result: result
+      - unless @results.any?
+        %p 検査結果はまだありません
 
   / 操作
   %div.actions
