@@ -1,3 +1,12 @@
 .header
-  = link_to root_path, class: 'header_title-link' do
-    %h1.header_title 水質検査データ管理システム
+  .header_container
+    = link_to root_path, class: 'header_title-link' do
+      %h1.header_title 水質検査データ管理システム
+    .header_name-wrapper
+      - if user_signed_in?
+        .header_name= current_user.name
+        .header_dropdown
+          .header-dropdown_items
+            .header-dropdown_item
+              = button_to 'ログアウト', destroy_user_session_path, method: 'delete'
+            .header-dropdown_item パスワード変更
