@@ -1,4 +1,5 @@
 class PlantsController < ApplicationController
+  before_action :authenticate_user!
   def index
     plants_sort = Plant.all.order(Arel.sql('name COLLATE "japanese"'))
     @search = plants_sort.ransack(params[:q])

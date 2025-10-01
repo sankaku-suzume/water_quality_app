@@ -1,4 +1,5 @@
 class TestItemsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @test_items = TestItem.all.order('sort_order')
   end

@@ -1,4 +1,5 @@
 class SamplesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_plant, only: [ :show, :new, :create, :edit, :update, :destroy ]
 
   def index
