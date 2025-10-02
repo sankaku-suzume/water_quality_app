@@ -78,8 +78,16 @@
 }
 
 .header-dropdown_item {
-
+  
   &:nth-child(n+2) {
     margin-top: 2px;
+  }
+  
+  a {
+    transition: opacity 0.3s ease;
+    
+    &:hover {
+      opacity: 0.6;
+    }
   }
 }

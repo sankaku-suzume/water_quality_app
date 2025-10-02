@@ -9,4 +9,5 @@
           .header-dropdown_items
             .header-dropdown_item
               = button_to 'ログアウト', destroy_user_session_path, method: 'delete'
-            .header-dropdown_item パスワード変更
+            .header-dropdown_item
+              = link_to 'パスワード変更', edit_user_registration_path
