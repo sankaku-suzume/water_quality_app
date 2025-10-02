@@ -1,5 +1,5 @@
 = turbo_frame_tag result do
-  = form_with(model: [plant, sample, result], data: { controller: "select", action: 'turbo:submit-end->modal#close' }) do |f|
+  = form_with(model: [plant, sample, result], data: { controller: "select", action: 'turbo:submit-end->modal#close' }, class: 'form-common') do |f|
     - if result.errors.any?
       #error_explanation
         %h2= "#{result.errors.count}件のエラーがあります"
