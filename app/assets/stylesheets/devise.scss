@@ -1,0 +1,47 @@
+.edit_user {
+  padding: 0 16px;
+}
+
+.user_field {
+  margin-top: 16px;
+}
+
+.user_label {
+  text-align-last: left;
+  width: auto;
+  font-size: 16px;
+  padding: 0;
+}
+
+.user_form-text {
+  width: 300px;
+  padding: 8px 16px;
+  font-size: 16px;
+  margin-top: 4px;
+  border: none;
+}
+
+.user_min-password {
+  font-size: 14px;
+  color: #888;
+}
+
+.user_delete-title {
+  margin-top: 32px;
+}
+
+.user_delete-btn {
+  border: none;
+  text-decoration: none;
+  background: none;
+  margin: 8px 16px 32px;
+  border-bottom: 1px solid #888;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: #d31313;
+    border-bottom: 1px solid #d31313;
+    cursor: pointer;
+  }
+}

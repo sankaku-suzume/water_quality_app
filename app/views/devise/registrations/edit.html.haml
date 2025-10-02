@@ -1,37 +1,35 @@
 .container
   %h2
-    Edit #{resource_name.to_s.humanize}
+    パスワード変更
   = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
     = render "devise/shared/error_messages", resource: resource
-    .field
-      = f.label :email
+    .field.user_field
+      = f.label :email, class: 'user_label'
       %br/
-      = f.email_field :email, autofocus: true, autocomplete: "email"
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: 'user_form-text'
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       %div
         Currently waiting confirmation for: #{resource.unconfirmed_email}
-    .field
-      = f.label :password
-      %i (leave blank if you don't want to change it)
+    .field.user_field
+      = f.label :password, class: 'user_label'
       %br/
-      = f.password_field :password, autocomplete: "new-password"
+      = f.password_field :password, autocomplete: "new-password", class: 'user_form-text'
       - if @minimum_password_length
         %br/
-        %em
+        %em.user_min-password
           = @minimum_password_length
-          characters minimum
-    .field
-      = f.label :password_confirmation
+          文字以上
+    .field.user_field
+      = f.label :password_confirmation, class: 'user_label'
       %br/
-      = f.password_field :password_confirmation, autocomplete: "new-password"
-    .field
-      = f.label :current_password
-      %i (we need your current password to confirm your changes)
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: 'user_form-text'
+    .field.user_field
+      = f.label :current_password, class: 'user_label'
       %br/
-      = f.password_field :current_password, autocomplete: "current-password"
-    .actions
-      = f.submit "Update"
-  %h3 Cancel my account
+      = f.password_field :current_password, autocomplete: "current-password", class: 'user_form-text'
+    .actions.user_actions
+      = f.submit "更新", class: 'btn btn-new'
+  %h3.user_delete-title アカウントを削除する
   %div
-    Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete}
-  = link_to "Back", :back
+    = button_to "削除する", registration_path(resource_name), data: { confirm: "本当に削除してよろしいですか?", turbo_confirm: "本当に削除してよろしいですか?" }, method: :delete, class: 'user_delete-btn'
+  = link_to "戻る", :back, class: 'btn btn-show'
