@@ -26,11 +26,17 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to admin_users_path(@user), notice: '更新しました'
+      redirect_to admin_users_path, notice: '更新しました'
     else
       flash.now[:error] = '更新に失敗しました'
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    user.destroy!
+    redirect_to admin_users_path, status: :see_other, notice: '削除しました'
   end
 
   private
