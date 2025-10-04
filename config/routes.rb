@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
 
   resources :samples, only: [ :index, :new, :create ]
+  resources :users
 
   resources :test_items
 end
