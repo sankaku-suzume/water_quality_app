@@ -13,6 +13,10 @@
     .form-group
       = f.label :email, "メールアドレス", class: 'user-form_label'
       = f.email_field :email, class: 'user-form_text'
+    - if user.new_record?
+      .form-group
+        = f.label :password, "初期パスワード", class: 'user-form_label'
+        = f.text_field :password, class: 'user-form_text'
     .form-group
       = f.label :admin, "アクセス権限", class: 'user-form_label'
       = f.radio_button :admin, true, class: 'user-form_radio'
