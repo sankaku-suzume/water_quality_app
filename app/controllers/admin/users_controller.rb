@@ -1,8 +1,22 @@
-class UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
     @users = User.all.order(Arel.sql('name COLLATE "japanese"'))
+  end
+
+  def new
+    @user = User.build
+  end
+
+  def create
+    @user = User.build(user_params)
+    if @user.save
+      redirect_to admin_users_path, notice: '保存しました'
+    else
+      flash.now[:error] = '保存に失敗しました'
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -12,7 +26,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to users_path(@user), notice: '更新しました'
+      redirect_to admin_users_path(@user), notice: '更新しました'
     else
       flash.now[:error] = '更新に失敗しました'
       render :edit, status: :unprocessable_entity
