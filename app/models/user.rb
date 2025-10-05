@@ -25,7 +25,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true
-  validates :name, format: { with: /\A[ぁ-んァ-ヶ一-龠々ーa-zA-Z0-9\p{blank}]+\z/, message: "は日本語または英数字で入力してください" }
+  validates :name, format: { with: /\A[ぁ-んァ-ヶ一-龠々ーa-zA-Z0-9\p{blank}]+\z/, message: 'は日本語または英数字で入力してください' }
 
   def active_for_authentication?
     super && admin?
