@@ -27,6 +27,14 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :name, format: { with: /\A[ぁ-んァ-ヶ一-龠々ーa-zA-Z0-9\p{blank}]+\z/, message: "は日本語または英数字で入力してください" }
 
+  def active_for_authentication?
+    super && admin?
+  end
+
+  def inactive_message
+    admin? ? super : :not_admin
+  end
+
   def password_required?
     new_record? || password.present? || password_confirmation.present?
   end
