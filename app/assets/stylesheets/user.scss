@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.users_text {
+  margin-top: 16px;
+}
+
 .users_users {
   margin-top: 32px;
   padding: 16px 16px 32px;
@@ -17,6 +21,10 @@
   gap: 12px;
   padding: 8px 16px;
   border-bottom: 1px solid #9B9B9B;
+
+  &.color_false {
+    color: rgb(161, 161, 161);
+  }
 }
 
 .users-user_heading {

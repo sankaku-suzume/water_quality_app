@@ -3,14 +3,15 @@
     %h1.users-header_title ユーザー一覧
     .users-header_btn
       = link_to '新規作成', new_admin_user_path, class: "btn btn-new"
+  %p.users_text ログイン権限がtrueでなければ当システムにログインできません。権限は編集画面で付与できます。
   .users_users
     .users-user_heading.users_user
       .user_name 名前
       .user_email メールアドレス
-      .user_admin アクセス権限
+      .user_admin ログイン権限
       .user_actions 操作
     - @users.each do |user|
-      .users_user
+      %div{ class: [ 'users_user', user.color_false? ] }
         .user_name= user.name
         .user_email= user.email
         .user_admin= user.admin
