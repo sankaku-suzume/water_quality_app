@@ -6,7 +6,7 @@
     %ul
       - @plant.errors.full_messages.each do |message|
         %li= message
-    = form_with(model: @plant, local: true) do |f|
+    = form_with(model: @plant, local: true, class: 'form-common') do |f|
       .form-group
         = f.label :name, "事業場名"
         = f.text_field :name, class: "form-control"

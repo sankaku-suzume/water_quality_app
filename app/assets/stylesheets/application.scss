@@ -9,6 +9,8 @@
 @import 'dashboard';
 @import 'kaminari';
 @import 'header';
+@import 'devise';
+@import 'user';
 
 html {
   word-spacing: 1px;
@@ -33,7 +35,6 @@ a {
 }
 
 body {
-  max-width: 800px;
   height: 100%;
   margin: auto;
   background-color: $base-bg-color;
@@ -45,9 +46,11 @@ body {
 }
 
 .container {
+  max-width: 800px;
+  margin: auto;
   padding: 24px 16px;
   width: 100%;
-  margin-top: 64px;
+  margin-top: 68px;
 }
 
 .actions {

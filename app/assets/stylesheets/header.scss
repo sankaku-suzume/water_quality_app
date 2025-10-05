@@ -1,11 +1,20 @@
 .header {
-  padding: 16px;
   background-color: #083862;
-  width: 100vw;
-  padding-inline: calc((100vw - 768px) / 2);
+  width: 100%;
+  height: 68px;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 100;
+}
+
+.header_container {
+  width: 800px;
+  padding: 16px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header_title-link {
@@ -21,4 +30,64 @@
 .header_title{
   color: #FFF;
   font-size: 24px;
+}
+
+.header_name-wrapper {
+  text-align: right;
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+
+    .header_dropdown {
+      display: block;
+    }
+  }
+}
+
+.header_name {
+  color: #FFF;
+}
+
+.header_dropdown {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  width: 130px;
+  display: none;
+}
+
+.header-dropdown_items {
+  background-color: #EEE;
+  margin-top: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  
+  button {
+    text-decoration: none;
+    border: none;
+    font-size: 16px;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
+    }
+  }
+}
+
+.header-dropdown_item {
+  
+  &:nth-child(n+2) {
+    margin-top: 2px;
+  }
+  
+  a {
+    transition: opacity 0.3s ease;
+    
+    &:hover {
+      opacity: 0.6;
+    }
+  }
 }

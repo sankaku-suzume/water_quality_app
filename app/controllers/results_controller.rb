@@ -1,4 +1,5 @@
 class ResultsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_sample, only: [ :new, :create, :edit, :update, :destroy ]
   before_action :set_test_items, only: [ :new, :create, :edit, :update, :destroy ]
 
