@@ -8,13 +8,14 @@
       = f.search_field :name_or_location_cont
       .plants-search_action
         = f.submit '検索'
-  .plants_table
-    - @plants.each do |plant|
-      .plants-table_content
-        = link_to plant_path(plant) do
-          .plants-table_name= plant.name
-          .plants-table_location= plant.location
-    = paginate @plants
+  = turbo_frame_tag 'plants-list' do
+    .plants_table
+      - @plants.each do |plant|
+        .plants-table_content
+          = link_to plant_path(plant) do
+            .plants-table_name= plant.name
+            .plants-table_location= plant.location
+      = paginate @plants
 
 
 
