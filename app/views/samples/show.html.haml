@@ -42,7 +42,7 @@
         - @results.each do |result|
           = render 'result', result: result
       - unless @results.any?
-        %p 検査結果はまだありません
+        %p#no_result_text 検査結果はまだありません
 
   / 操作
   %div.actions

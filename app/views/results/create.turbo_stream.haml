@@ -2,3 +2,4 @@
   = render partial: 'samples/result', locals: {result: @result}
 = turbo_stream.update Result.new, ''
 = turbo_stream_flash
+= turbo_stream.remove 'no_result_text'
