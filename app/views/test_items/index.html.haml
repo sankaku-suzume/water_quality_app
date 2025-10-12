@@ -15,19 +15,8 @@
         .test_items-table_buttons 操作
     .test_items-table_data
       - if @test_items.any?
-        - @test_items.each do |item|
-          .test_items-table_row
-            .test_items-table_order= item.sort_order.presence || "-"
-            .test_items-table_name= item.name
-            .test_items-table_unit= item.unit.presence || "-"
-            .test_items-table_limit= item.detection_limit.presence || "-"
-            .test_items-table_min= item.standard_min.presence || "-"
-            .test_items-table_max= item.standard_max.presence || "-"
-            .test_items-table_buttons.table_actions
-              = link_to edit_test_item_path(item), class: "test_item-edit icon-edit" do
-                = image_tag 'edit.svg'
-              = link_to test_item_path(item), data: {turbo_method: :delete, turbo_confirm: "検査項目を削除すると、この項目の検査結果データも全て削除されます。本当にこの検査項目を削除しますか？" }, class: "test_item-delete icon-delete" do
-                = image_tag 'delete.svg'
+        - @test_items.each do |test_item|
+          = render 'test_item', test_item: test_item
       - else
         .test_items-table_row
           %p 登録済みの検査項目はありません。

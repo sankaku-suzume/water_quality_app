@@ -25,7 +25,7 @@ class TestItemsController < ApplicationController
   def update
     @test_item = TestItem.find(params[:id])
     if @test_item.update(test_item_params)
-      redirect_to test_items_path, notice: '変更しました'
+      flash.now.notice = '更新しました'
     else
       flash.now[:error] = '変更に失敗しました'
       render :edit, status: :unprocessable_entity
