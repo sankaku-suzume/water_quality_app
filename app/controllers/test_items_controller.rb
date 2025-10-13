@@ -11,9 +11,9 @@ class TestItemsController < ApplicationController
   def create
     @test_item = TestItem.build(test_item_params)
     if @test_item.save
-      redirect_to test_items_path, notice: '保存しました'
+      flash.now.notice = '登録しました'
     else
-      flash.now[:error] = '保存に失敗しました'
+      flash.now[:error] = '登録に失敗しました'
       render :new, status: :unprocessable_entity
     end
   end

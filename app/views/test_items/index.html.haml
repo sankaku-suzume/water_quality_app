@@ -1,7 +1,7 @@
 .container 
   .test_items_header
     %h1 検査項目マスタ
-    = link_to "新規作成", new_test_item_path, class: "btn btn-new"
+    = link_to "新規作成", new_test_item_path, class: "btn btn-new", data: { turbo_frame: 'modal' }
 
   .test_items_table
     .test_items-table_header
@@ -13,10 +13,9 @@
         .test_items-table_min 基準下限
         .test_items-table_max 基準上限
         .test_items-table_buttons 操作
-    .test_items-table_data
-      - if @test_items.any?
-        - @test_items.each do |test_item|
-          = render 'test_item', test_item: test_item
-      - else
-        .test_items-table_row
-          %p 登録済みの検査項目はありません。
+    .test_items-table_data#test_items
+      - @test_items.each do |test_item|
+        = render 'test_item', test_item: test_item
+    - unless @test_items.any?
+      .test_items-table_row
+        %p#no_test_item_text 登録済みの検査項目はありません。
