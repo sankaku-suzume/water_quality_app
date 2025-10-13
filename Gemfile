@@ -42,6 +42,7 @@ gem 'ransack'
 gem 'sassc-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
+gem 'faker'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -54,6 +55,8 @@ group :development, :test do
   gem 'rubocop-rails-omakase', require: false
 
   gem 'pry-byebug'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do
