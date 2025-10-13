@@ -33,9 +33,9 @@ class TestItemsController < ApplicationController
   end
 
   def destroy
-    test_item = TestItem.find(params[:id])
-    test_item.destroy!
-    redirect_to test_items_path, status: :see_other, notice: '削除しました'
+    @test_item = TestItem.find(params[:id])
+    @test_item.destroy!
+    flash.now.notice = '削除しました'
   end
 
   private
