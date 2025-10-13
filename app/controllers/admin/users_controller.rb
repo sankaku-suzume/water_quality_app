@@ -12,9 +12,9 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.build(user_params)
     if @user.save
-      redirect_to admin_users_path, notice: '保存しました'
+      flash.now.notice = '登録しました'
     else
-      flash.now[:error] = '保存に失敗しました'
+      flash.now[:error] = '登録に失敗しました'
       render :new, status: :unprocessable_entity
     end
   end

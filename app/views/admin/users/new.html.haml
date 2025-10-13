@@ -1,4 +1,2 @@
-.container
-  %h1 ユーザー 新規作成
-  .form_wrapper
-    = render 'form', user: @user
+= render 'commons/modal', title: '新規登録' do
+  = render 'form', user: @user
