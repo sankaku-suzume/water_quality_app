@@ -15,7 +15,8 @@
             .plants-table_name= plant.name
             .plants-table_location= plant.location
       = paginate @plants
-
-
-
-  = link_to 'ホームに戻る', root_path, class: 'btn btn-show'
+      
+  .div-comment
+    %p 虫眼鏡アイコンのフォームから事業場を検索できます。名前でも所在地でも可です。
+    %p 新規作成は右上のボタンからです。
+    %p リストはその事業場の詳細ページにリンクしてます。

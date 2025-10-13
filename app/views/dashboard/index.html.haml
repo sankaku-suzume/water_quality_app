@@ -33,6 +33,10 @@
       .dashboard-content_img
         = image_tag 'user.png'
       %h3.dashboard-content_title ユーザー管理
-      %p.dashboard-content_text 閲覧・編集権限の設定
+      %p.dashboard-content_text ログイン権限の設定
       .dashboard-content_btn
         = link_to 'ユーザー一覧へ', admin_users_path
+        
+  .div-comment
+    %p ダッシュボードページです。
+    %p 最近の検体：直近5件の採水データを表示しています。

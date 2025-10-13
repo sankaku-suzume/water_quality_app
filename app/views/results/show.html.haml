@@ -24,3 +24,7 @@
           %td= maximum(@recent_results)
   .result_chart
     %canvas{ data: { controller: "chartjs", chartjs: { data: { value: @chart_data.to_json }, options: { value: @chart_options.to_json } } } }
+
+  .div-comment
+    %p 直近20検体の結果について、平均・最大・最小値を表示します。
+    %p グラフで表示します。

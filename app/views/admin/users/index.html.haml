@@ -15,3 +15,9 @@
         = render 'user', user: user
   .actions
     = link_to "戻る", root_path, class: "btn btn-show"
+  
+  .div-comment
+    %p sign_upで作成されたユーザーデータの一覧です。
+    %p このページの新規作成からユーザーデータを作成することもできます。
+    %p sign_upしたときのデフォルトのログイン権限はfalseです。
+    %p 基本的に権限のある者からの招待で使用することを想定しています。

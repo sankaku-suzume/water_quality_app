@@ -20,10 +20,11 @@ Rails.application.routes.draw do
   end
 
   resources :samples, only: [ :index, :new, :create ]
+  
+  resources :test_items, only: [ :index, :new, :create, :edit, :update, :destroy ]
 
   namespace :admin do
-    resources :users
+    resources :users, only: [ :index, :new, :create, :edit, :update, :destroy ]
   end
 
-  resources :test_items
 end
