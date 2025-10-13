@@ -12,9 +12,9 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.build(user_params)
     if @user.save
-      redirect_to admin_users_path, notice: '保存しました'
+      flash.now.notice = '登録しました'
     else
-      flash.now[:error] = '保存に失敗しました'
+      flash.now[:error] = '登録に失敗しました'
       render :new, status: :unprocessable_entity
     end
   end
@@ -26,7 +26,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to admin_users_path, notice: '更新しました'
+      flash.now.notice = '更新しました'
     else
       flash.now[:error] = '更新に失敗しました'
       render :edit, status: :unprocessable_entity
@@ -34,9 +34,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    user.destroy!
-    redirect_to admin_users_path, status: :see_other, notice: '削除しました'
+    @user = User.find(params[:id])
+    @user.destroy!
+    flash.now.notice = '削除しました'
   end
 
   private

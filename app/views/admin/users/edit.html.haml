@@ -1,4 +1,2 @@
-.container
-  %h1 ユーザー 編集
-  .form_wrapper
-    = render 'form', user: @user
+= render 'commons/modal', title: '編集' do
+  = render 'form', user: @user

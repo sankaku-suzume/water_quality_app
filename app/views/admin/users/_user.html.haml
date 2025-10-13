@@ -1,0 +1,10 @@
+= turbo_frame_tag user do
+  %div{ class: [ 'users_user', user.color_false? ] }
+    .user_name= user.name
+    .user_email= user.email
+    .user_admin= user.admin
+    .user_actions
+      = link_to edit_admin_user_path(user), class: "user-edit", data: { turbo_frame: 'modal' } do
+        = image_tag 'edit.svg'
+      = link_to admin_user_path(user), data: { turbo_method: :delete, turbo_confirm: "このユーザーを削除しますか？" }, class: "user-delete" do
+        = image_tag 'delete.svg'

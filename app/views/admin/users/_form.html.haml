@@ -1,28 +1,29 @@
-= form_with(model: [:admin, user], class: 'form-user form-common') do |f|
-  - if user.errors.any?
-    #error_explanation
-      %h2= "#{user.errors.count}件のエラーがあります"
-      %ul
-        - user.errors.full_messages.each do |msg|
-          %li= msg
+= turbo_frame_tag user do
+  = form_with(model: [:admin, user], class: 'form-user form-common', data: { action: 'turbo:submit-end->modal#close' }) do |f|
+    - if user.errors.any?
+      #error_explanation
+        %h2= "#{user.errors.count}件のエラーがあります"
+        %ul
+          - user.errors.full_messages.each do |msg|
+            %li= msg
 
-  .form_groups
-    .form-group
-      = f.label :name, "名前", class: 'user-form_label'
-      = f.text_field :name, class: 'user-form_text'
-    .form-group
-      = f.label :email, "メールアドレス", class: 'user-form_label'
-      = f.email_field :email, class: 'user-form_text'
-    - if user.new_record?
+    .form_groups
       .form-group
-        = f.label :password, "初期パスワード", class: 'user-form_label'
-        = f.text_field :password, class: 'user-form_text'
-    .form-group
-      = f.label :admin, "ログイン権限", class: 'user-form_label'
-      = f.radio_button :admin, true, class: 'user-form_radio'
-      = f.label :admin, '許可する', value: true, class: 'user-form_label-radio'
-      = f.radio_button :admin, false, class: 'user-form_radio'
-      = f.label :admin, '許可しない', value: false, class: 'user-form_label-radio'
+        = f.label :name, "名前", class: 'user-form_label'
+        = f.text_field :name, class: 'user-form_text'
+      .form-group
+        = f.label :email, "メールアドレス", class: 'user-form_label'
+        = f.email_field :email, class: 'user-form_text'
+      - if user.new_record?
+        .form-group
+          = f.label :password, "初期パスワード", class: 'user-form_label'
+          = f.text_field :password, class: 'user-form_text'
+      .form-group
+        = f.label :admin, "ログイン権限", class: 'user-form_label'
+        = f.radio_button :admin, true, class: 'user-form_radio'
+        = f.label :admin, '許可する', value: true, class: 'user-form_label-radio'
+        = f.radio_button :admin, false, class: 'user-form_radio'
+        = f.label :admin, '許可しない', value: false, class: 'user-form_label-radio'
 
-  .form-actions
-    = f.submit "登録する", class: "btn btn-new"
+    .form-actions
+      = f.submit "登録する", class: "btn btn-new"
