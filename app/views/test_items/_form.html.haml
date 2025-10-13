@@ -1,36 +1,37 @@
-= form_with(model: @test_item, local: true, class: 'form-common') do |f|
-  - if test_item.errors.any?
-    #error_explanation
-      %h2= "#{test_item.errors.count}件のエラーがあります"
-      %ul
-        - test_item.errors.full_messages.each do |msg|
-          %li= msg
+= turbo_frame_tag test_item do
+  = form_with(model: @test_item, local: true, data: { action: 'turbo:submit-end->modal#close'}, class: 'form-common') do |f|
+    - if test_item.errors.any?
+      #error_explanation
+        %h2= "#{test_item.errors.count}件のエラーがあります"
+        %ul
+          - test_item.errors.full_messages.each do |msg|
+            %li= msg
 
-  %table.form-table
-    .form-group
-      = f.label :name, "検査項目名"
-      = f.text_field :name, placeholder: "例: BOD"
+    %table.form-table
+      .form-group
+        = f.label :name, "検査項目名"
+        = f.text_field :name, placeholder: "例: BOD"
 
-    .form-group
-      = f.label :unit, "単位"
-      = f.text_field :unit, placeholder: "例: mg/L"
+      .form-group
+        = f.label :unit, "単位"
+        = f.text_field :unit, placeholder: "例: mg/L"
 
-    .form-group
-      = f.label :detection_limit, "定量下限値"
-      = f.number_field :detection_limit, step: :any
+      .form-group
+        = f.label :detection_limit, "定量下限値"
+        = f.number_field :detection_limit, step: :any
 
-    .form-group
-      = f.label :standard_min, "基準下限"
-      = f.number_field :standard_min, step: :any
+      .form-group
+        = f.label :standard_min, "基準下限"
+        = f.number_field :standard_min, step: :any
 
-    .form-group
-      = f.label :standard_max, "基準上限"
-      = f.number_field :standard_max, step: :any
+      .form-group
+        = f.label :standard_max, "基準上限"
+        = f.number_field :standard_max, step: :any
 
-    .form-group
-      = f.label :sort_order, "表示順"
-      = f.number_field :sort_order, step: 1
+      .form-group
+        = f.label :sort_order, "表示順"
+        = f.number_field :sort_order, step: 1
 
-  .form-actions
-    = f.submit "登録する", class: "btn btn-new"
-    = link_to "一覧へ戻る", test_items_path, class: "btn btn-show"
+    .form-actions
+      = f.submit "登録する", class: "btn btn-new"
+      -# = link_to "一覧へ戻る", test_items_path, class: "btn btn-show"

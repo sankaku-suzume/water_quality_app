@@ -1,4 +1,2 @@
-.container
-  %h1 検査項目マスタ 編集
-  .form_wrapper
-    = render 'form', test_item: @test_item
+= render 'commons/modal', title: '編集' do
+  = render 'form', test_item: @test_item

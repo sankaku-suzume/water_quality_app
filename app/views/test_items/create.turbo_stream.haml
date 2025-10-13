@@ -1,0 +1,4 @@
+= turbo_stream.prepend 'test_items' do
+  = render partial: 'test_item', locals: { test_item: @test_item }
+= turbo_stream_flash
+= turbo_stream.remove 'no_test_item_text'

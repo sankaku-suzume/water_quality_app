@@ -1,0 +1,13 @@
+= turbo_frame_tag test_item do
+  .test_items-table_row
+    .test_items-table_order= test_item.sort_order.presence || "-"
+    .test_items-table_name= test_item.name
+    .test_items-table_unit= test_item.unit.presence || "-"
+    .test_items-table_limit= test_item.detection_limit.presence || "-"
+    .test_items-table_min= test_item.standard_min.presence || "-"
+    .test_items-table_max= test_item.standard_max.presence || "-"
+    .test_items-table_buttons.table_actions
+      = link_to edit_test_item_path(test_item), class: "test_item-edit icon-edit", data: { turbo_frame: 'modal' } do
+        = image_tag 'edit.svg'
+      = link_to test_item_path(test_item), data: {turbo_method: :delete, turbo_confirm: "検査項目を削除すると、この項目の検査結果データも全て削除されます。本当にこの検査項目を削除しますか？" }, class: "test_item-delete icon-delete" do
+        = image_tag 'delete.svg'

@@ -11,9 +11,9 @@ class TestItemsController < ApplicationController
   def create
     @test_item = TestItem.build(test_item_params)
     if @test_item.save
-      redirect_to test_items_path, notice: '保存しました'
+      flash.now.notice = '登録しました'
     else
-      flash.now[:error] = '保存に失敗しました'
+      flash.now[:error] = '登録に失敗しました'
       render :new, status: :unprocessable_entity
     end
   end
@@ -25,7 +25,7 @@ class TestItemsController < ApplicationController
   def update
     @test_item = TestItem.find(params[:id])
     if @test_item.update(test_item_params)
-      redirect_to test_items_path, notice: '変更しました'
+      flash.now.notice = '更新しました'
     else
       flash.now[:error] = '変更に失敗しました'
       render :edit, status: :unprocessable_entity
@@ -33,9 +33,9 @@ class TestItemsController < ApplicationController
   end
 
   def destroy
-    test_item = TestItem.find(params[:id])
-    test_item.destroy!
-    redirect_to test_items_path, status: :see_other, notice: '削除しました'
+    @test_item = TestItem.find(params[:id])
+    @test_item.destroy!
+    flash.now.notice = '削除しました'
   end
 
   private

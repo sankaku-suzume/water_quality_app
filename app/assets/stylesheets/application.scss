@@ -60,3 +60,21 @@ body {
 .hidden {
   display: none;
 }
+
+.table_actions {
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.icon-edit {
+  display: block;
+  width: 32px;
+}
+
+.icon-delete {
+  display: block;
+  width: 22px;
+  padding-top: 4px;
+}
