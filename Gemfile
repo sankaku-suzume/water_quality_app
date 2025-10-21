@@ -34,6 +34,7 @@ gem 'active_decorator'
 gem 'bootstrap', '~> 5.2'
 gem 'chart-js-rails'
 gem 'devise'
+gem 'faker'
 gem 'hamlit'
 gem 'haml-rails', '~> 2.0'
 gem 'importmap-rails'
@@ -42,7 +43,6 @@ gem 'ransack'
 gem 'sassc-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
-gem 'faker'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -54,9 +54,9 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem 'rubocop-rails-omakase', require: false
 
+  gem 'factory_bot_rails'
   gem 'pry-byebug'
   gem 'rspec-rails'
-  gem 'factory_bot_rails'
 end
 
 group :development do
