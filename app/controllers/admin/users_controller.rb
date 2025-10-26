@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.all.order(Arel.sql('name COLLATE "ja_JP.UTF-8"'))
+    @users = User.all.order(Arel.sql('name COLLATE "ja-x-icu"'))
   end
 
   def new
