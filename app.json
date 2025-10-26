@@ -1,0 +1,14 @@
+{
+  "name": "water-quality-data-app",
+  "description": "This is water-quality-data-app",
+  "keywords": [],
+  "website": "",
+  "repository": "https://github.com/sankaku-suzume/water_quality_app",
+  "env": {},
+  "addons": [],
+  "buildpacks": [{
+    "url": "heroku/nodejs"
+  }, {
+    "url": "heroku/ruby"
+  }]
+}

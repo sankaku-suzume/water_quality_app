@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: plants
+# Table name: appa_plants
 #
 #  id         :bigint           not null, primary key
 #  location   :string

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: samples
+# Table name: appa_samples
 #
 #  id            :bigint           not null, primary key
 #  inspector     :string
@@ -14,7 +14,7 @@
 #
 # Indexes
 #
-#  index_samples_on_plant_id  (plant_id)
+#  index_appa_samples_on_plant_id  (plant_id)
 #
 require 'test_helper'
 
