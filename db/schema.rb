@@ -28,6 +28,61 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_28_085604) do
     t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["sample_id"], name: "index_appa_results_on_sample_id"
+    t.index ["test_item_id"], name: "index_appa_results_on_test_item_id"
+  end
+
+  create_table "samples", force: :cascade do |t|
+    t.bigint "plant_id", null: false
+    t.date "sampling_date", null: false
+    t.time "sampling_time", null: false
+    t.string "location"
+    t.string "inspector"
+    t.text "remarks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plant_id"], name: "index_appa_samples_on_plant_id"
+  end
+
+  create_table "test_items", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "unit"
+    t.float "detection_limit"
+    t.float "standard_min"
+    t.float "standard_max"
+    t.integer "sort_order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
+    t.string "name", null: false
+    t.index ["email"], name: "index_appa_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_appa_users_on_reset_password_token", unique: true
+  end
+
+  create_table "plants", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.string "location"
+    t.text "remarks"
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.bigint "sample_id", null: false
+    t.bigint "test_item_id", null: false
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["sample_id"], name: "index_results_on_sample_id"
     t.index ["test_item_id"], name: "index_results_on_test_item_id"
   end

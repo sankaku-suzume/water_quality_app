@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: test_items
+# Table name: appa_test_items
 #
 #  id              :bigint           not null, primary key
 #  detection_limit :float

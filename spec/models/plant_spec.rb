@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: appa_plants
+#
+#  id         :bigint           not null, primary key
+#  location   :string
+#  name       :string           not null
+#  remarks    :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe Plant, type: :model do
