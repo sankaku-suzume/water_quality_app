@@ -13,6 +13,9 @@
       .field.user_field
         = f.check_box :remember_me
         = f.label :remember_me, class: 'user_label'
-    .actions.user_actions
+    .actions.login_btn
       = f.submit "ログイン", class: 'btn btn-new'
   = render "devise/shared/links"
+
+  .login_guest.login_btn
+    = button_to 'ゲストログイン', users_guest_sign_in_path, turbo_method: :post, class: 'btn btn-show'

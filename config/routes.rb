@@ -26,4 +26,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [ :index, :new, :create, :edit, :update, :destroy ]
   end
+
+  namespace :users do
+    post 'guest_sign_in', to: 'guest_sessions#create'
+  end
 end
