@@ -45,3 +45,13 @@
     cursor: pointer;
   }
 }
+
+.login_btn {
+  input[type='submit'], button {
+    border: none;
+  }
+}
+
+.login_guest {
+  padding-top: 16px;
+}

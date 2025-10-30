@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_admin
 
   def index
     @users = User.all.order(Arel.sql('name COLLATE "ja-x-icu"'))
@@ -40,6 +41,12 @@ class Admin::UsersController < ApplicationController
   end
 
   private
+  def require_admin
+    unless current_user.admin?
+      redirect_to root_path, alert: '管理者のみアクセス可能です'
+    end
+  end
+
   def user_params
     params.require(:user).permit(:name, :email, :password, :admin)
   end

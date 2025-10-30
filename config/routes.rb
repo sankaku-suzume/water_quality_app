@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -25,5 +27,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [ :index, :new, :create, :edit, :update, :destroy ]
+  end
+
+  namespace :users do
+    post 'guest_sign_in', to: 'guest_sessions#create'
   end
 end
