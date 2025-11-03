@@ -151,3 +151,22 @@
   width: 22px;
   padding-top: 4px;
 }
+
+// search
+.samples_plants-search_drop-down {
+  width: 300px;
+  padding: 8px;
+  background: #ffffff;
+  color: #09579a;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.samples_drop-down_plant {
+  padding: 2px 0;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+}
