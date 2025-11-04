@@ -34,10 +34,10 @@
     = f.submit "登録する", class: "btn btn-new"
     = link_to "戻る", samples_path, class: "btn btn-show"
 
-.samples_plants-search_wrapper
+%div{ data: { controller: 'sample_plants_search', action: 'focusin->sample_plants_search#show focusout->sample_plants_search#hide' }, class: 'samples_plants-search_wrapper' }
   = search_form_for @sample_plants_search, as: :sample_plants_q, url: new_sample_path, html: { data: { turbo_frame: 'sample_plants-list', controller: 'search', action: 'input->search#submit' } } do |f|
     = f.search_field :name_cont
-  = turbo_frame_tag 'sample_plants-list' do
-    .samples_plants-search_drop-down
+  .samples_plants-search_drop-down.hidden
+    = turbo_frame_tag 'sample_plants-list' do
       - @plants.each do |plant|
-        .samples_drop-down_plant= plant.name
+        %div{ data: { sample_plants_search_target: 'plant', action: 'mousedown->sample_plants_search#get_value', plant_id: plant.id }, class: 'samples_drop-down_plant' }= plant.name
