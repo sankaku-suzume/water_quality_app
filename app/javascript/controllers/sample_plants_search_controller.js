@@ -4,14 +4,14 @@ export default class SamplePlantsSearchController extends Controller {
   // static targets = ['select']
 
   // connect() {
-  //   console.log('SelectController connected')
+  //   this.moveSearchBox()
   // }
 
   show() {
     const element = document.querySelector('.samples_plants-search_drop-down')
     element.classList.remove('hidden')
   }
-  
+
   hide() {
     const element = document.querySelector('.samples_plants-search_drop-down')
     element.classList.add('hidden')

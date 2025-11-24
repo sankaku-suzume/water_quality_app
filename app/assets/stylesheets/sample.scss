@@ -152,7 +152,45 @@
   padding-top: 4px;
 }
 
+
+// samples#new
+
+.samples_form-wrapper {
+  position: relative;
+}
+
+#sample_plant_id {
+  appearance: none;
+  pointer-events: none;
+  background: none;
+  border: none;
+  font-size: 16px;
+  padding: 8px;
+}
+
+.samples_form-plant-field {
+  display: flex;
+  gap: 10px;
+}
+
+.samples_plants-search-container {
+  width: 200px;
+  height: 33px;
+}
+
 // search
+.samples_plants-search_wrapper {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 170px;
+  width: 200px;
+
+  input[type='search'] {
+    width: 200px;
+  }
+}
+
 .samples_plants-search_drop-down {
   width: 300px;
   padding: 8px;
