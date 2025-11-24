@@ -16,7 +16,9 @@ class SamplesController < ApplicationController
       @sample = @plant.samples.build
     else
       @sample = Sample.build
-      @plants = Plant.all.order(Arel.sql('name COLLATE "japanese"'))
+      sample_plants_sort = Plant.all.order(Arel.sql('name COLLATE "ja-x-icu"'))
+      @sample_plants_search = sample_plants_sort.ransack(params[:sample_plants_q])
+      @plants = @sample_plants_search.result.all
     end
   end
 
