@@ -1,17 +1,17 @@
 module ResultsHelper
   def average(results)
     values = set_values(results)
-    values.sum.fdiv(results.length)
+    values.sum.fdiv(results.length).round(decimal_places(results))
   end
 
   def minimum(results)
     values = set_values(results)
-    values.min
+    values.min.round(decimal_places(results))
   end
 
   def maximum(results)
     values = set_values(results)
-    values.max
+    values.max.round(decimal_places(results))
   end
 
   private
@@ -22,5 +22,15 @@ module ResultsHelper
       values.push(value)
     end
     values.map(&:to_f)
+  end
+
+  def decimal_places(results)
+    last_result = results.first
+    decimal_index = last_result.value.reverse.index('.')
+    if decimal_index
+      decimal_index
+    else
+      0
+    end
   end
 end
