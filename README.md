@@ -1,29 +1,23 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 # 水質検査データ管理システム
+<br>
 
+## はじめに
+
+このアプリは私が職場で使用することを想定して作成しました。
+職場では、事業場から出る排水の水質検査を行っており、その検査結果をデータベースとしてMicrosoft Accessを使用して保存しています。
+会社の方針で、今後Microsoft Accessが使用不可となることが決まっており、その後継として当アプリの開発に着手しました。  
+<br>
+## このアプリについて
+
+- 事業場から出る排水の水質検査データを管理します。
+- 事業場ごとに採水日とその検査データを保存できます。
+- 検査項目は検査項目マスタで追加できます。
+- 係の職員のみの使用を想定しているため、権限が付与されたユーザーのみがログインできます。  
+<br>
+
+## 主な使用技術
+
+    
 ## データベース設計
 ```mermaid
 erDiagram
@@ -85,3 +79,25 @@ erDiagram
         datetime updated_at
     }
 ```
+## 検体詳細ページ
+
+- Turbo frame、Turbo streamを使って新規登録、編集、削除を非同期化
+- Stimulusを使ってformをモーダル化
+- Stimulusを使ってセレクトボックスで検査項目を選ぶとリアルタイムで単位を表示
+- 測定値の有効数字が検査項目によって異なるため、valueをあえてstring型にした。
+- valueを数字で処理する必要があるときはto_fでfloat型に変換して使用した。
+- 基準値を超過した結果の文字色を赤で表示
+
+## 検査結果ページ
+
+- Chart.jsを使って、過去20件分についてのグラフを表示
+
+## 検査項目マスタ
+
+- Turbo frame、Turbo streamを使って新規登録、編集、削除を非同期化
+- Stimulusを使ってformをモーダル化
+
+## ユーザー認証
+
+- Deviseを使用したユーザー認証
+- adminカラムを追加し、権限を付与されたものしかログインできないようにした。
