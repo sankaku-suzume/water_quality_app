@@ -18,29 +18,26 @@
 ## 主な使用技術
 ![Static Badge](https://img.shields.io/badge/Ruby-3.3.2-red)
 ![Static Badge](https://img.shields.io/badge/Rails-7.2.2.2-red)
-![Static Badge](https://img.shields.io/badge/Devise-4.9.4-red)
-![Static Badge](https://img.shields.io/badge/kaminari-1.2.2-blue)
-![Static Badge](https://img.shields.io/badge/Chart.js-orange)
-![Static Badge](https://img.shields.io/badge/HAML-brown)
 ![Static Badge](https://img.shields.io/badge/HTML5-orange)
 ![Static Badge](https://img.shields.io/badge/CSS3-blue)
-![Static Badge](https://img.shields.io/badge/Sass-purple)
-![Static Badge](https://img.shields.io/badge/Ransack-4.4.0-blue)
-![Static Badge](https://img.shields.io/badge/RSpec-red)
+![Static Badge](https://img.shields.io/badge/Hotwire-purple)
 ![Static Badge](https://img.shields.io/badge/Stimulus-green)
+![Static Badge](https://img.shields.io/badge/HAML-brown)
+![Static Badge](https://img.shields.io/badge/Sass-purple)
 
+![Static Badge](https://img.shields.io/badge/Devise-4.9.4-red)
+![Static Badge](https://img.shields.io/badge/RSpec-red)
+![Static Badge](https://img.shields.io/badge/kaminari-1.2.2-blue)
+![Static Badge](https://img.shields.io/badge/Ransack-4.4.0-blue)
+![Static Badge](https://img.shields.io/badge/Chart.js-orange)
 
+![Static Badge](https://img.shields.io/badge/PostgreSQL-blue)
+![Static Badge](https://img.shields.io/badge/Heroku-purple)
+![Static Badge](https://img.shields.io/badge/Git-orange)
+![Static Badge](https://img.shields.io/badge/GitHub-black)
+![Static Badge](https://img.shields.io/badge/VSCode-blue)
 
-
-
-
-
-
-
-
-
-
-
+<br>
     
 ## データベース設計
 ```mermaid
