@@ -31,5 +31,6 @@ Rails.application.routes.draw do
 
   namespace :users do
     post 'guest_sign_in', to: 'guest_sessions#create'
+    post 'guest_admin_sign_in', to: 'guest_admin_sessions#create'
   end
 end
