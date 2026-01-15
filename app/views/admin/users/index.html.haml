@@ -3,12 +3,12 @@
     %h1.users-header_title ユーザー一覧
     .users-header_btn
       = link_to '新規作成', new_admin_user_path, class: "btn btn-new", data: { turbo_frame: 'modal' }
-  %p.users_text ログイン権限がtrueでなければ当システムにログインできません。権限は編集画面で付与できます。
+  %p.users_text 管理者権限がtrueでなければこのページにアクセスできません。権限は編集画面で付与できます。
   .users_users
     .users-user_heading.users_user
       .user_name 名前
       .user_email メールアドレス
-      .user_admin ログイン権限
+      .user_admin 管理者権限
       .user_actions 操作
     %div#users
       - @users.each do |user|
