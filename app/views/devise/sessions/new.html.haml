@@ -19,3 +19,5 @@
 
   .login_guest.login_btn
     = button_to 'ゲストログイン', users_guest_sign_in_path, turbo_method: :post, class: 'btn btn-show'
+  .login_guest.login_btn
+    = button_to '管理者としてゲストログイン', users_guest_admin_sign_in_path, turbo_method: :post, class: 'btn btn-show'

@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin
+  before_action :not_guest, only:[:create, :update, :destroy]
 
   def index
     @users = User.all.order(Arel.sql('name COLLATE "ja-x-icu"'))
@@ -49,5 +50,11 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :admin)
+  end
+
+  def not_guest
+    if current_user.email == 'guest_admin@example.com'
+      redirect_to root_path, alert: 'ゲスト管理者は操作できません'
+    end
   end
 end
