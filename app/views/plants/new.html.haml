@@ -2,23 +2,4 @@
   .plant_header
     %h1.plant_header-title 新しい事業場を登録
 
-  .form_wrapper
-    %ul
-      - @plant.errors.full_messages.each do |message|
-        %li= message
-    = form_with(model: @plant, local: true, class: 'form-common') do |f|
-      .form-group
-        = f.label :name, "事業場名"
-        = f.text_field :name, class: "form-control"
-
-      .form-group
-        = f.label :location, "所在地"
-        = f.text_field :location, class: "form-control"
-
-      .form-group
-        = f.label :remarks, "備考"
-        = f.text_area :remarks, class: "form-control", rows: 3
-
-      .form-actions
-        = f.submit "登録する", class: "btn btn-new"
-        = link_to "戻る", plants_path, class: "btn btn-edit"
+  = render 'form', plant: @plant, back_link: plants_path

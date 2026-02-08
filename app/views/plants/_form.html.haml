@@ -1,0 +1,20 @@
+.form_wrapper
+  %ul
+    - plant.errors.full_messages.each do |message|
+      %li= message
+  = form_with(model: plant, local: true, class: 'form-common') do |f|
+    .form-group
+      = f.label :name, "事業場名"
+      = f.text_field :name, class: "form-control"
+
+    .form-group
+      = f.label :location, "所在地"
+      = f.text_field :location, class: "form-control"
+
+    .form-group
+      = f.label :remarks, "備考"
+      = f.text_area :remarks, class: "form-control", rows: 3
+
+    .form-actions
+      = f.submit "登録する", class: "btn btn-new"
+      = link_to "戻る", back_link, class: "btn btn-edit"
