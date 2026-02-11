@@ -1,0 +1,5 @@
+= turbo_frame_tag plant do
+  .plants-table_content
+    = link_to plant_path(plant), data: { turbo: false } do
+      .plants-table_name= plant.name
+      .plants-table_location= plant.location

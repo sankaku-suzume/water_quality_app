@@ -1,5 +1,2 @@
-.container
-  .plant_header
-    %h1.plant_header-title 新しい事業場を登録
-
+= render 'commons/modal', title: '新規登録' do
   = render 'form', plant: @plant, back_link: plants_path

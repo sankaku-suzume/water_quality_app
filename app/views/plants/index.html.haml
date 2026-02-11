@@ -2,18 +2,15 @@
   .plants_header
     %h1 事業場一覧
     .plants-header_btn
-      = link_to "新規作成", new_plant_path, class: "btn btn-new"
+      = link_to "新規作成", new_plant_path, class: "btn btn-new", data: { turbo_frame: 'modal' }
   .plants-search_wrapper
     = image_tag 'search.svg', class: 'plants-search_icon'
     = search_form_for @search, html: { data: { turbo_frame: 'plants-list', controller: 'search', action: 'input->search#submit' } } do |f|
       = f.search_field :name_or_location_cont
   = turbo_frame_tag 'plants-list' do
-    .plants_table
+    .plants_table#plants
       - @plants.each do |plant|
-        .plants-table_content
-          = link_to plant_path(plant), data: { turbo: false } do
-            .plants-table_name= plant.name
-            .plants-table_location= plant.location
+        = render 'plant', plant: plant
       = paginate @plants
       
   .div-comment

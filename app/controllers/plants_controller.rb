@@ -18,7 +18,8 @@ class PlantsController < ApplicationController
   def create
     @plant = Plant.build(plant_params)
     if @plant.save
-      redirect_to plant_path(@plant), notice: '保存しました'
+      flash.now.notice = '事業場を登録しました'
+      # redirect_to plant_path(@plant), notice: '保存しました'
     else
       flash.now[:error] = '保存に失敗しました'
       render :new, status: :unprocessable_entity
