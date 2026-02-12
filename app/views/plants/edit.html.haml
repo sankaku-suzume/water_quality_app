@@ -1,5 +1,2 @@
-.container
-  .plant_header
-    %h1.plant_header-title 事業場情報を編集
-
-  = render 'form', plant: @plant, back_link: plant_path(@plant)
+= render 'commons/modal', title: '事業場情報を編集' do
+  = render 'form', plant: @plant
