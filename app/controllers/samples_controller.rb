@@ -50,7 +50,7 @@ class SamplesController < ApplicationController
   def update
     @sample = @plant.samples.find(params[:id])
     if @sample.update(sample_params)
-      redirect_to plant_sample_path(@plant, @sample), notice: '更新しました'
+      flash.now.notice = '更新しました'
     else
       flash.now[:error] = '更新に失敗しました'
       render :edit, status: :unprocessable_entity

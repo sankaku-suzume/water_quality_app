@@ -1,29 +1,10 @@
--# 採水詳細（Sample#show）
 .container
   .sample_header
     %h1 検体詳細
     .sample_header-buttons
-      = link_to "編集", edit_plant_sample_path(@sample.plant, @sample), class: "btn btn-edit"
+      = link_to "編集", edit_plant_sample_path(@sample.plant, @sample), class: "btn btn-edit", data: { turbo_frame: 'modal' }
       = link_to "削除", plant_sample_path(@sample.plant, @sample), data: {turbo_method: :delete, turbo_confirm: "この検体データを削除しますか？" }, class: "btn btn-delete"
-  .sample-table_wrapper
-    %h2.sample_plant-name= @sample.plant.name
-    %table.sample-table
-      %tbody
-        %tr
-          %th 採水日
-          %td.sample-table_date= l(@sample.sampling_date, format: :long)
-        %tr
-          %th 採水時間
-          %td= @sample.sampling_time&.strftime("%H:%M")
-        %tr
-          %th 採水場所
-          %td= @sample.location
-        %tr
-          %th 採水者
-          %td= @sample.inspector
-        %tr
-          %th 備考
-          %td= @sample.remarks.present? ? simple_format(@sample.remarks) : "-"
+  = render 'sample_show', sample: @sample
   .sample-results_wrapper
     .sample_results-header 
       %h2.sample_results-heading 検査結果

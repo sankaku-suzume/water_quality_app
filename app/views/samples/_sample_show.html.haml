@@ -1,0 +1,20 @@
+= turbo_frame_tag sample do
+  .sample-table_wrapper
+    %h2.sample_plant-name= @sample.plant.name
+    %table.sample-table
+      %tbody
+        %tr
+          %th 採水日
+          %td.sample-table_date= l(@sample.sampling_date, format: :long)
+        %tr
+          %th 採水時間
+          %td= @sample.sampling_time&.strftime("%H:%M")
+        %tr
+          %th 採水場所
+          %td= @sample.location
+        %tr
+          %th 採水者
+          %td= @sample.inspector
+        %tr
+          %th 備考
+          %td= @sample.remarks.present? ? simple_format(@sample.remarks) : "-"

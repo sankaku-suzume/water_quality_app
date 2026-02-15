@@ -1,4 +1,2 @@
-.container
-  %h1 検体データ 編集
-  .form_wrapper
-    = render 'form', plant: @plant, sample: @sample
+= render 'commons/modal', title: '検体情報を編集' do
+  = render 'form', plant: @sample.plant, sample: @sample
