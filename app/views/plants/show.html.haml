@@ -2,12 +2,9 @@
   .plant_header
     %h1.plant_header-title 事業場詳細
     .plant_header-buttons
-      = link_to '編集', edit_plant_path(@plant), class: 'plant-header_button btn btn-edit'
+      = link_to '編集', edit_plant_path(@plant), class: 'plant-header_button btn btn-edit', data: { turbo_frame: 'modal' }
       = link_to '削除', plant_path(@plant), data: { turbo_method: 'delete', turbo_confirm: '削除してもよろしいですか？' }, class: 'plant-header_button btn btn-delete'
-  .plant_info
-    %h2.plant-info_name= @plant.name
-    %p.plant-info_location= @plant.location
-    %p.plant-info_remarks= @plant.remarks
+  = render 'plant-show', plant: @plant
   .plant_samples
     .plant_samples-header
       %h2 検体一覧

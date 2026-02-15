@@ -18,7 +18,8 @@ class PlantsController < ApplicationController
   def create
     @plant = Plant.build(plant_params)
     if @plant.save
-      redirect_to plant_path(@plant), notice: '保存しました'
+      flash.now.notice = '事業場を登録しました'
+      # redirect_to plant_path(@plant), notice: '保存しました'
     else
       flash.now[:error] = '保存に失敗しました'
       render :new, status: :unprocessable_entity
@@ -32,7 +33,7 @@ class PlantsController < ApplicationController
   def update
     @plant = Plant.find(params[:id])
     if @plant.update(plant_params)
-      redirect_to plant_path(@plant), notice: '更新できました'
+      flash.now.notice = '更新しました'
     else
       flash.now[:error] = '更新に失敗しました'
       render :edit, status: :unprocessable_entity
