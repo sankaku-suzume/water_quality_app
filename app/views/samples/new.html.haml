@@ -1,7 +1,9 @@
-.container
-  %h1 検体データ 新規登録
-  .form_wrapper.samples_form-wrapper
-    - if @plant
-      = render 'form', plant: @plant, sample: @sample
-    - else
+
+- if @plant
+  = render 'commons/modal', title: '検体新規登録' do
+    = render 'form', plant: @plant, sample: @sample
+- else
+  .container
+    %h1 検体データ 新規登録
+    .form_wrapper.samples_form-wrapper
       = render 'form-from-index', sample: @sample

@@ -8,7 +8,7 @@
   .plant_samples
     .plant_samples-header
       %h2 検体一覧
-      = link_to "新規作成", new_plant_sample_path(@plant), class: "btn btn-new"
+      = link_to "新規作成", new_plant_sample_path(@plant), class: "btn btn-new", data: { turbo_frame: 'modal'}
     - if @samples.any?
       .samples-table
         .samples-table_header
@@ -16,13 +16,9 @@
             .samples-table_date 採水日
             .samples-table_time 採水時間
             .samples-table_remarks 備考
-        .samples-table_data
+        .samples-table_data#samples
           - @samples.each do |sample|
-            = link_to plant_sample_path(@plant, sample), class: 'sample-table_link' do
-              .samples-table_row
-                .samples-table_date= l sample.sampling_date, format: :default
-                .samples-table_time= l sample.sampling_time, format: :time
-                .samples-table_remarks= sample.remarks
+            = render 'samples/sample', plant: @plant, sample: sample
     - else
       %p 採水記録はまだありません。
 

@@ -26,7 +26,7 @@ class SamplesController < ApplicationController
     if @plant
       @sample = @plant.samples.build(sample_params)
       if @sample.save
-        redirect_to plant_sample_path(@plant, @sample), notice: '保存しました'
+        flash.now.notice = '検体を登録しました'
       else
         flash.now[:error] = '保存に失敗しました'
         render :new, status: :unprocessable_entity
