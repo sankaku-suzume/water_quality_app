@@ -1,0 +1,7 @@
+- if @form_flag == 2
+  = turbo_stream.prepend 'samples-samples' do
+    = render partial: 'samples/samples-sample', locals: { plant: @plant, sample: @sample }
+- else
+  = turbo_stream.prepend 'samples' do
+    = render partial: 'samples/sample', locals: { plant: @plant, sample: @sample }
+= turbo_stream_flash

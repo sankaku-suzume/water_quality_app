@@ -1,4 +1,4 @@
-= form_with(model: [plant, sample], local: true, class: 'form-common') do |f|
+= form_with(model: [plant, sample], local: true, class: 'form-common', data: { action: 'turbo:submit-end->modal#close' }) do |f|
   - if sample.errors.any?
     #error_explanation
       %h2= "#{sample.errors.count}件のエラーがあります"
@@ -29,4 +29,3 @@
 
   .form-actions
     = f.submit "登録する", class: "btn btn-new"
-    = link_to "戻る", plant_path(plant), class: "btn btn-show"

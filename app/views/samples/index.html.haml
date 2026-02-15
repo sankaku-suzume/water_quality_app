@@ -2,13 +2,10 @@
   .samples_header
     %h1.samples-header_title 検体一覧
     .samples-header_btn
-      = link_to '新規作成', new_sample_path, class: "btn btn-new"
-  .samples_samples
+      = link_to '新規作成', new_sample_path, class: "btn btn-new", data: { turbo_frame: 'modal'}
+  .samples_samples#samples-samples
     - @samples.each do |sample|
-      .samples_sample
-        = link_to plant_sample_path(sample.plant, sample) do
-          .sample_date= l(sample.sampling_date, format: :long)
-          .sample_plant= sample.plant.name
+      = render 'samples-sample', sample: sample
     = paginate @samples
   .actions
     = link_to "戻る", root_path, class: "btn btn-show"

@@ -1,0 +1,5 @@
+= link_to plant_sample_path(plant, sample), class: 'sample-table_link' do
+  .samples-table_row
+    .samples-table_date= l sample.sampling_date, format: :default
+    .samples-table_time= l sample.sampling_time, format: :time
+    .samples-table_remarks= sample.remarks

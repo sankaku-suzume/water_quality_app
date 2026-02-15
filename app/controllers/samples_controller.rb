@@ -26,15 +26,16 @@ class SamplesController < ApplicationController
     if @plant
       @sample = @plant.samples.build(sample_params)
       if @sample.save
-        redirect_to plant_sample_path(@plant, @sample), notice: '保存しました'
+        flash.now.notice = '検体を登録しました'
       else
         flash.now[:error] = '保存に失敗しました'
         render :new, status: :unprocessable_entity
       end
     else
       @sample = Sample.build(sample_params)
+      @form_flag = 2
       if @sample.save
-        redirect_to plant_sample_path(@sample.plant, @sample), notice: '保存しました'
+        flash.now.notice = '検体を登録しました'
       else
         flash.now[:error] = '保存に失敗しました'
         render :new, status: :unprocessable_entity
@@ -49,7 +50,7 @@ class SamplesController < ApplicationController
   def update
     @sample = @plant.samples.find(params[:id])
     if @sample.update(sample_params)
-      redirect_to plant_sample_path(@plant, @sample), notice: '更新しました'
+      flash.now.notice = '更新しました'
     else
       flash.now[:error] = '更新に失敗しました'
       render :edit, status: :unprocessable_entity
@@ -64,7 +65,7 @@ class SamplesController < ApplicationController
 
   private
   def sample_params
-    params.require(:sample).permit(:plant_id, :sampling_date, :sampling_time, :location, :inspector, :remarks)
+    params.require(:sample).permit(:plant_id, :sampling_date, :sampling_time, :location, :inspector, :remarks, :form_flag)
   end
 
   def set_plant
