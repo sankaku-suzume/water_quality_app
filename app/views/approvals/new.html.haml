@@ -1,0 +1,16 @@
+.container 
+  %h2 承認依頼
+  = form_with(model: [@result.sample.plant, @result.sample, @result, @approval], class: 'form-common') do |f|
+    - if @result.errors.any?
+      #error_explanation
+        %h2= "#{result.errors.count}件のエラーがあります"
+        %ul
+          - result.errors.full_messages.each do |msg|
+            %li= msg
+
+    .form_groups
+      .form-group
+        = f.label :comment, "コメント"
+        = f.text_area :comment
+    .form-actions
+      = f.submit "承認依頼", class: "btn btn-new"
