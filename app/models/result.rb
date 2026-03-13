@@ -17,6 +17,7 @@
 class Result < ApplicationRecord
   belongs_to :sample
   belongs_to :test_item
+  has_many :approval, dependent: :destroy
 
   validates :value, numericality: { allow_nil: true }
 end
