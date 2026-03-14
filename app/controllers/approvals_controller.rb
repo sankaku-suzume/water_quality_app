@@ -8,6 +8,16 @@ class ApprovalsController < ApplicationController
 
   def create
     @approval = @result.approvals.build(approval_params)
+    
+    case params[:submit_type]
+    when 'requested'
+      @approval.action = 'requested'
+    when 'approved'
+      @approval.action = 'approved'
+    when 'rejected'
+      @approval.action = 'rejected'
+    end
+
     if @approval.save
       redirect_to plant_sample_path(@result.sample.plant, @result.sample), notice: '承認依頼しました'
     else
@@ -18,7 +28,7 @@ class ApprovalsController < ApplicationController
 
   private
   def approval_params
-    params.require(:approval).permit(:comment).merge(action: 0, user_name: current_user.name)
+    params.require(:approval).permit(:action, :comment, :submit_type).merge(user_name: current_user.name)
   end
 
   def set_result

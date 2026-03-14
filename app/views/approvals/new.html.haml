@@ -13,4 +13,10 @@
         = f.label :comment, "コメント"
         = f.text_area :comment
     .form-actions
-      = f.submit "承認依頼", class: "btn btn-new"
+      - if @result.approvals.count == 0 || @result.approvals.last(2).first.action == 'rejected'
+        = f.button "承認依頼", class: "btn btn-new", name: 'submit_type', value: 'requested'
+      - elsif @result.approvals.last(2).first.action == 'requested'
+        = f.button "承認", class: "btn btn-new", name: 'submit_type', value: 'approved'
+        = f.button "差戻し", class: "btn btn-show", name: 'submit_type', value: 'rejected'
+      - else
+        approved
