@@ -1,4 +1,32 @@
 // show
+.result_header {
+  display: flex;
+  justify-content: space-between;
+}
+.result_status {
+  margin-top: 12px;
+  width: 160px;
+  text-align: center;
+  padding: 6px 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #FFF;
+  border-radius: 4px;
+  background: #959595;
+
+  &.requested {
+    background: #ff821c;
+  }
+
+  &.approved {
+    background: #13d484;
+  }
+
+  &.rejected {
+    background: #d44013;
+  }
+}
+
 .result_subtitle {
   margin-top: 24px;
 }
