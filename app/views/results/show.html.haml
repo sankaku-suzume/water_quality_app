@@ -35,6 +35,18 @@
   .result_chart
     %canvas{ data: { controller: "chartjs", chartjs: { data: { value: @chart_data.to_json }, options: { value: @chart_options.to_json } } } }
 
+  %h2.result_approval-title 承認履歴
+  .result_approvals
+    - @result.approvals.each do |approval|
+      .result_approval
+        .result_approval-wrapper
+          .result_approvals-date= approval.created_at.to_date
+          .result_approvals-action= approval.action
+          .result_approvals-user= approval.user_name
+        .result_approvals-comment= approval.comment
+    - unless @result.approvals.any?
+      %p#no_approval_text 承認履歴はまだありません
+
   .div-comment
     %p 直近20検体の結果について、平均・最大・最小値を表示します。
     %p グラフで表示します。

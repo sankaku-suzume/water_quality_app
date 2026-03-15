@@ -90,3 +90,29 @@
 .result-form_unit-wrapper {
   margin-left: 8px;
 }
+
+.result_approval-title {
+  margin-top: 24px;
+}
+
+.result_approval {
+  border-bottom: 1px solid #959595;
+  margin-top: 4px;
+  padding: 4px 8px;
+}
+
+.result_approval-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.result_approvals-date {
+  width: 120px;
+}
+
+.result_approvals-action {
+  width: 100px;
+}
+
+.result_approvals-comment {
+}
