@@ -12,17 +12,22 @@ class ApprovalsController < ApplicationController
     case params[:submit_type]
     when 'requested'
       @approval.action = 'requested'
+      message_notice = '承認依頼しました'
+      message_error = '承認依頼できませんでした'
     when 'approved'
       @approval.action = 'approved'
+      message_notice = '承認しました'
+      message_error = '承認できませんでした'
     when 'rejected'
       @approval.action = 'rejected'
+      message_notice = '差戻しました'
+      message_error = '差戻しできませんでした'
     end
 
     if @approval.save
-      flash.now.notice = '承認依頼しました'
-      # redirect_to plant_sample_path(@result.sample.plant, @result.sample), notice: '承認依頼しました'
+      flash.now.notice = message_notice
     else
-      flash.now[:error] = '承認依頼できませんでした'
+      flash.now[:error] = message_error
       render :new, status: :unprocessable_entity
     end
   end
