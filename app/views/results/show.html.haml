@@ -2,16 +2,16 @@
   .result_header
     %h1.result_title 検査結果
     - if !@result.approvals.last
-      = link_to "未承認", new_plant_sample_result_approval_path(@result.sample.plant, @result.sample, @result), class: "result_status"
+      = link_to "未承認", new_plant_sample_result_approval_path(@result.sample.plant, @result.sample, @result), class: "result_status", data: { turbo_frame: 'modal'}
     - elsif @result.approvals.last.action == 'requested'
       -if current_user.admin == true
-        = link_to "承認待ち", new_plant_sample_result_approval_path(@result.sample.plant, @result.sample, @result), class: "result_status requested"
+        = link_to "承認待ち", new_plant_sample_result_approval_path(@result.sample.plant, @result.sample, @result), class: "result_status requested", data: { turbo_frame: 'modal'}
       - else
         .result_status 承認待ち
     - elsif @result.approvals.last.action == 'approved'
       .result_status.approved 承認済
     - elsif @result.approvals.last.action == 'rejected'
-      = link_to "差戻中", new_plant_sample_result_approval_path(@result.sample.plant, @result.sample, @result), class: "result_status rejected"
+      = link_to "差戻中", new_plant_sample_result_approval_path(@result.sample.plant, @result.sample, @result), class: "result_status rejected", data: { turbo_frame: 'modal'}
     
   %h2.result_subtitle #{@result.sample.plant.name} #{@result.sample.sampling_date} ＜#{@result.test_item.name}: #{@result.value}#{@result.test_item.unit}＞
   .result_recent_results
@@ -39,16 +39,12 @@
     %canvas{ data: { controller: "chartjs", chartjs: { data: { value: @chart_data.to_json }, options: { value: @chart_options.to_json } } } }
 
   %h2.result_approval-title 承認履歴
-  .result_approvals
-    - @result.approvals.each do |approval|
-      .result_approval
-        .result_approval-wrapper
-          .result_approvals-date= approval.created_at.to_date
-          .result_approvals-action= action_label(approval)
-          .result_approvals-user= approval.user_name
-        .result_approvals-comment= approval.comment
-    - unless @result.approvals.any?
-      %p#no_approval_text 承認履歴はまだありません
+  = turbo_frame_tag 'approvals-list' do
+    .result_approvals#approvals
+      - @result.approvals.each do |approval|
+        = render 'approval', approval: approval
+      - unless @result.approvals.any?
+        %p#no_approval_text 承認履歴はまだありません
 
   .div-comment
     %p 直近20検体の結果について、平均・最大・最小値を表示します。

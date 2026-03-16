@@ -1,0 +1,7 @@
+= turbo_frame_tag approval do
+  .result_approval
+    .result_approval-wrapper
+      .result_approvals-date= approval.created_at.to_date
+      .result_approvals-action= action_label(approval)
+      .result_approvals-user= approval.user_name
+    .result_approvals-comment= approval.comment

@@ -1,0 +1,21 @@
+
+= form_with(model: [result.sample.plant, result.sample, result, approval], class: 'form-common', data: { action: 'turbo:submit-end->modal#close' }) do |f|
+  - if @result.errors.any?
+    #error_explanation
+      %h2= "#{result.errors.count}件のエラーがあります"
+      %ul
+        - result.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form_groups
+    .form-group
+      = f.label :comment, "コメント"
+      = f.text_area :comment
+  .form-actions
+    - if @result.approvals.count == 0 || @result.approvals.last(2).first.action == 'rejected'
+      = f.button "承認依頼", class: "btn btn-new", name: 'submit_type', value: 'requested'
+    - elsif @result.approvals.last(2).first.action == 'requested'
+      = f.button "承認する", class: "btn btn-new", name: 'submit_type', value: 'approved'
+      = f.button "差戻し", class: "btn btn-show", name: 'submit_type', value: 'rejected'
+    - else
+      approved
