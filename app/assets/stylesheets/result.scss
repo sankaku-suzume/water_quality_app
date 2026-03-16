@@ -3,7 +3,13 @@
   display: flex;
   justify-content: space-between;
 }
+
+.result_status-wrapper {
+
+}
+
 .result_status {
+  display: block;
   margin-top: 12px;
   width: 160px;
   text-align: center;
