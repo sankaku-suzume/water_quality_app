@@ -1,6 +1,9 @@
 .container
-  %h1.result_title 検査結果
-  %h2.result_subtitle #{@result.sample.plant.name} ＜#{@result.test_item.name}＞
+  .result_header
+    %h1.result_title 検査結果
+    = render 'status_wrapper', result: @result
+
+  %h2.result_subtitle #{@result.sample.plant.name} #{@result.sample.sampling_date} ＜#{@result.test_item.name}: #{@result.value}#{@result.test_item.unit}＞
   .result_recent_results
     %h3.result-recent_results_title 直近20検体の結果
     .result-recent_results_table-wrapper
@@ -24,6 +27,14 @@
           %td= maximum(@recent_results)
   .result_chart
     %canvas{ data: { controller: "chartjs", chartjs: { data: { value: @chart_data.to_json }, options: { value: @chart_options.to_json } } } }
+
+  %h2.result_approval-title 承認履歴
+  = turbo_frame_tag 'approvals-list' do
+    .result_approvals#approvals
+      - @result.approvals.each do |approval|
+        = render 'approval', approval: approval
+      - unless @result.approvals.any?
+        %p#no_approval_text 承認履歴はまだありません
 
   .div-comment
     %p 直近20検体の結果について、平均・最大・最小値を表示します。

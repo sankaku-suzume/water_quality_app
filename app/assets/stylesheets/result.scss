@@ -1,4 +1,53 @@
 // show
+.result_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.result_status-wrapper {
+  width: 160px;
+  margin-top: 12px;
+  
+  .result_status {
+    padding: 6px 8px;
+    font-size: 20px;
+  }
+}
+
+.result_status {
+  display: block;
+  width: 100%;
+  padding: 4px 8px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFF;
+  border-radius: 4px;
+  background: #959595;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &.requested {
+    background: #ff821c;
+  }
+
+  &.approved {
+    background: #13d484;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &.rejected {
+    background: #d44013;
+  }
+
+}
+
 .result_subtitle {
   margin-top: 24px;
 }
@@ -61,4 +110,30 @@
 
 .result-form_unit-wrapper {
   margin-left: 8px;
+}
+
+.result_approval-title {
+  margin-top: 24px;
+}
+
+.result_approval {
+  border-bottom: 1px solid #959595;
+  margin-top: 4px;
+  padding: 4px 8px;
+}
+
+.result_approval-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.result_approvals-date {
+  width: 120px;
+}
+
+.result_approvals-action {
+  width: 100px;
+}
+
+.result_approvals-comment {
 }

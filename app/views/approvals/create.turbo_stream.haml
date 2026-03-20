@@ -1,0 +1,12 @@
+-# sample#showのとき
+= turbo_stream.replace @result do
+  = render partial: 'samples/result', locals: {result: @result}
+
+-# result#showのとき
+= turbo_stream.append 'approvals' do
+  = render partial: 'results/approval', locals: { approval: @approval }
+= turbo_stream.remove 'no_approval_text'
+= turbo_stream.replace 'result_status' do
+  = render partial: 'results/status', locals: { result: @result }
+
+= turbo_stream_flash
