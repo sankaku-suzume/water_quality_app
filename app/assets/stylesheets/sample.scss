@@ -114,7 +114,7 @@
 }
 
 .sample-result_unit {
-  width: 60px;
+  width: 100px;
 }
 
 .sample-result_detection_limit {
@@ -129,8 +129,12 @@
   width: 90px;
 }
 
+.sample-result_status {
+  width: 100px;
+}
+
 .sample-result_buttons {
-  width: 136px;
+  width: 100px;
   display: flex;
   gap: 6px;
 }

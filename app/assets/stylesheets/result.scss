@@ -5,20 +5,30 @@
 }
 
 .result_status-wrapper {
-
+  width: 160px;
+  margin-top: 12px;
+  
+  .result_status {
+    padding: 6px 8px;
+    font-size: 20px;
+  }
 }
 
 .result_status {
   display: block;
-  margin-top: 12px;
-  width: 160px;
+  width: 100%;
+  padding: 4px 8px;
   text-align: center;
-  padding: 6px 8px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: #FFF;
   border-radius: 4px;
   background: #959595;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
 
   &.requested {
     background: #ff821c;
@@ -26,11 +36,16 @@
 
   &.approved {
     background: #13d484;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   &.rejected {
     background: #d44013;
   }
+
 }
 
 .result_subtitle {

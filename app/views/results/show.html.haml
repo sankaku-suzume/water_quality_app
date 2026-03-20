@@ -1,8 +1,8 @@
 .container
   .result_header
     %h1.result_title 検査結果
-    = render 'status', result: @result
-    
+    = render 'status_wrapper', result: @result
+
   %h2.result_subtitle #{@result.sample.plant.name} #{@result.sample.sampling_date} ＜#{@result.test_item.name}: #{@result.value}#{@result.test_item.unit}＞
   .result_recent_results
     %h3.result-recent_results_title 直近20検体の結果

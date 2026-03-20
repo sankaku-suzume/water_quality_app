@@ -1,12 +1,12 @@
-%div.result_status-wrapper#result_status
-  - if !result.approvals.last
-    = link_to "未承認", new_plant_sample_result_approval_path(result.sample.plant, result.sample, result), class: "result_status", data: { turbo_frame: 'modal'}
-  - elsif result.approvals.last.action == 'requested'
-    -if current_user.admin == true
-      = link_to "承認待ち", new_plant_sample_result_approval_path(result.sample.plant, result.sample, result), class: "result_status requested", data: { turbo_frame: 'modal'}
-    - else
-      .result_status 承認待ち
-  - elsif result.approvals.last.action == 'approved'
-    .result_status.approved 承認済
-  - elsif result.approvals.last.action == 'rejected'
-    = link_to "差戻中", new_plant_sample_result_approval_path(result.sample.plant, result.sample, result), class: "result_status rejected", data: { turbo_frame: 'modal'}
+
+- if !result.approvals.last
+  = link_to "未承認", new_plant_sample_result_approval_path(result.sample.plant, result.sample, result), class: "result_status", data: { turbo_frame: 'modal'}
+- elsif result.approvals.last.action == 'requested'
+  -if current_user.admin == true
+    = link_to "承認待ち", new_plant_sample_result_approval_path(result.sample.plant, result.sample, result), class: "result_status requested", data: { turbo_frame: 'modal'}
+  - else
+    .result_status 承認待ち
+- elsif result.approvals.last.action == 'approved'
+  .result_status.approved 承認済
+- elsif result.approvals.last.action == 'rejected'
+  = link_to "差戻中", new_plant_sample_result_approval_path(result.sample.plant, result.sample, result), class: "result_status rejected", data: { turbo_frame: 'modal'}
