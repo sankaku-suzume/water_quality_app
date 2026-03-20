@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :plants do
     resources :samples, only: [ :show, :new, :create, :edit, :update, :destroy ] do
       resources :results, only: [ :show, :new, :create, :edit, :update, :destroy ] do
-        resources :approvals
+        resources :approvals, only: [ :new, :create ]
       end
     end
   end

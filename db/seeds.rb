@@ -74,13 +74,13 @@ Result.destroy_all
 samples.each do |sample|
   test_items.each do |item|
     value = case item.name
-            when "水温" then rand(10.0..25.0).round(1)
-            when "pH" then rand(6.0..8.0).round(2)
-            when "BOD" then rand(1.0..15.0).round(1)
-            when "SS" then rand(1.0..20.0).round(1)
-            when "大腸菌数" then rand(0..800)
-            else rand(1.0..10.0)
-            end
+    when "水温" then rand(10.0..25.0).round(1)
+    when "pH" then rand(6.0..8.0).round(2)
+    when "BOD" then rand(1.0..15.0).round(1)
+    when "SS" then rand(1.0..20.0).round(1)
+    when "大腸菌数" then rand(0..800)
+    else rand(1.0..10.0)
+    end
     Result.create!(sample: sample, test_item: item, value: value)
   end
 end

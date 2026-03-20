@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin
-  before_action :not_guest, only:[:create, :update, :destroy]
+  before_action :not_guest, only: [ :create, :update, :destroy ]
 
   def index
     @users = User.all.order(Arel.sql('name COLLATE "ja-x-icu"'))
