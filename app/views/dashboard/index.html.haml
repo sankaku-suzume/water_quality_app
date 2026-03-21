@@ -1,4 +1,12 @@
 .container
+  - if current_user.admin == true
+    - if @approvals_requested.present?
+      .dashboard_approval-notification
+        .dashboard_approval-notification-text 承認依頼が#{@approvals_requested.length}件あります
+  - else
+    - if @approvals_rejected.present?
+      .dashboard_approval-notification
+        .dashboard_approval-notification-text  差戻しが#{@approvals_rejected.length}件あります
   .recent_samples_wrapper
     %h2 最近の検体
     .recent_samples
