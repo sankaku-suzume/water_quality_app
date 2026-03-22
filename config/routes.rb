@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   resources :test_items, only: [ :index, :new, :create, :edit, :update, :destroy ]
 
+  resources :approvals, only: [ :index ]
+
   namespace :admin do
     resources :users, only: [ :index, :new, :create, :edit, :update, :destroy ]
   end

@@ -1,6 +1,17 @@
 class ApprovalsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_result
+  before_action :set_result, only: [ :new, :create ]
+
+  def index
+    # 各result_idの最新のapprovalを取得
+    latest_approvals = Approval.select('DISTINCT ON (result_id) *').order('result_id, created_at DESC')
+
+    # latest_approvalsからrequestedのものだけを抽出
+    @approvals_requested = Approval.select('latest_approvals.*').from("(#{latest_approvals.to_sql}) AS latest_approvals").where('latest_approvals.action = ?', 0).order('latest_approvals.created_at DESC')
+
+    # latest_approvalsからrejectedのものだけを抽出
+    @approvals_rejected = Approval.select('latest_approvals.*').from("(#{latest_approvals.to_sql}) AS latest_approvals").where('latest_approvals.action = ?', 2).order('latest_approvals.created_at DESC')
+  end
 
   def new
     @approval = @result.approvals.build

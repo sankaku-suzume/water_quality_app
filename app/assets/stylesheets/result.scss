@@ -23,29 +23,32 @@
   font-weight: 700;
   color: #FFF;
   border-radius: 4px;
-  background: #959595;
+  background: #9068b1;
   transition: opacity 0.3s ease;
 
-  &:hover {
-    opacity: 0.7;
+  &.requested-admin {
+    background: #ff821c;
   }
 
   &.requested {
-    background: #ff821c;
+    background: #959595;
   }
 
   &.approved {
     background: #13d484;
-
-    &:hover {
-      opacity: 1;
-    }
   }
 
   &.rejected {
     background: #d44013;
   }
 
+}
+
+a.result_status {
+
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 .result_subtitle {
