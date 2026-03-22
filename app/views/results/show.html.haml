@@ -36,6 +36,9 @@
       - unless @result.approvals.any?
         %p#no_approval_text 承認履歴はまだありません
 
+  %div.actions
+    = link_to "検査結果一覧", plant_sample_path(@result.sample.plant, @result.sample), class: "btn btn-show"
+
   .div-comment
     %p 直近20検体の結果について、平均・最大・最小値を表示します。
     %p グラフで表示します。
