@@ -1,0 +1,31 @@
+.container
+  .approvals_header
+    - if current_user.admin == true
+      %h1.approvals-header_title 承認依頼一覧
+    - else
+      %h1.approvals-header_title 差戻一覧
+  .approvals_approvals
+    .approvals_approval.approvals_approval-header
+      .approvals-approval_date 採水日
+      .approvals-approval_plant 事業場
+      .approvals-approval_test_item 検査項目
+      .approvals-approval_result 測定値
+    - if current_user.admin == true
+      - @approvals_requested.each do |approval|
+        = link_to plant_sample_path(approval.result.sample.plant, approval.result.sample), class: 'approvals_approval' do
+          .approvals-approval_date= approval.result.sample.sampling_date
+          .approvals-approval_plant= approval.result.sample.plant.name
+          .approvals-approval_test_item= approval.result.test_item.name
+          .approvals-approval_result= "#{approval.result.value} #{approval.result.test_item.unit}"
+    - else
+      - @approvals_rejected.each do |approval|
+        = link_to plant_sample_path(approval.result.sample.plant, approval.result.sample), class: 'approvals_approval' do
+          .approvals-approval_date= approval.result.sample.sampling_date
+          .approvals-approval_plant= approval.result.sample.plant.name
+          .approvals-approval_test_item= approval.result.test_item.name
+          .approvals-approval_result= "#{approval.result.value} #{approval.result.test_item.unit}"
+  .actions
+    = link_to "戻る", root_path, class: "btn btn-show"
+
+  .div-comment
+    %p 現在承認依頼(差戻し)があるものを表示しています。
