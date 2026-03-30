@@ -49,30 +49,40 @@
 | 検査項目マスタ | 検査項目を追加・編集・削除できる。検査結果ページでの表示順を指定できる。 |
 | データ入力 | 検体データを事業場で分けずに新しい順に一覧表示。最新の検査結果の入力に便利。<br>ここから検体の新規登録も可能 |
 | ユーザー管理 | 本来はユーザーのログイン権限を管理します。<br>現在は公開用にユーザー管理ページへのアクセス権限としています。<br>アクセス権があるユーザーは他のユーザーにアクセス権を付与（剥奪）することが<br>できます。 |
+| 承認 | 検査結果を入力後、管理者から承認を得る。<br>検査結果ごとに未承認・承認依頼・差戻し・承認済みのステータス表示<br>承認依頼・差戻しをダッシュボードで通知<br>履歴を表示 |
 
 <br>
     
 ## データベース設計
 ```mermaid
 erDiagram
-    plants ||--o{ samples : "has"
-    samples ||--o{ results : "has"
-    test_items ||--o{ results : "references"
 
-    plants {
+    USERS {
         bigint id PK
-        string name "NOT NULL"
+        string email
+        string encrypted_password
+        boolean admin
+        string reset_password_token
+        datetime reset_password_sent_at
+        datetime remember_created_at
+        datetime created_at
+        datetime updated_at
+    }
+
+    PLANTS {
+        bigint id PK
+        string name
         string location
         text remarks
         datetime created_at
         datetime updated_at
     }
 
-    samples {
+    SAMPLES {
         bigint id PK
-        bigint plant_id FK "NOT NULL"
-        date sampling_date "NOT NULL"
-        time sampling_time "NOT NULL"
+        bigint plant_id FK
+        date sampling_date
+        time sampling_time
         string location
         string inspector
         text remarks
@@ -80,9 +90,9 @@ erDiagram
         datetime updated_at
     }
 
-    test_items {
+    TEST_ITEMS {
         bigint id PK
-        string name "NOT NULL"
+        string name
         string unit
         float detection_limit
         float standard_min
@@ -92,26 +102,29 @@ erDiagram
         datetime updated_at
     }
 
-    results {
+    RESULTS {
         bigint id PK
-        bigint sample_id FK "NOT NULL"
-        bigint test_item_id FK "NOT NULL"
+        bigint sample_id FK
+        bigint test_item_id FK
         string value
         datetime created_at
         datetime updated_at
     }
 
-    users {
+    APPROVALS {
         bigint id PK
-        string email "NOT NULL, UNIQUE"
-        string encrypted_password "NOT NULL"
-        boolean admin "DEFAULT false, NOT NULL"
-        string reset_password_token
-        datetime reset_password_sent_at
-        datetime remember_created_at
+        bigint result_id FK
+        integer action
+        string user_name
+        text comment
         datetime created_at
         datetime updated_at
     }
+
+    PLANTS ||--o{ SAMPLES : has
+    SAMPLES ||--o{ RESULTS : has
+    TEST_ITEMS ||--o{ RESULTS : has
+    RESULTS ||--o{ APPROVALS : has
 ```
 <br>
 
@@ -119,6 +132,7 @@ erDiagram
 
 ### ダッシュボード
 
+- 承認依頼（差戻し）があれば件数を通知
 - すぐにアクセスできるよう、直近５検体を表示
 
 ### 事業場一覧
@@ -130,20 +144,20 @@ erDiagram
 
 ### 検体詳細
 
-- Turbo frame、Turbo streamを使って新規登録、編集、削除を非同期化
-- Stimulusを使ってformをモーダル化
-- Stimulusを使ってセレクトボックスで検査項目を選ぶとリアルタイムで単位を表示
+- formにおいて、Stimulusを使ってセレクトボックスで検査項目を選ぶとリアルタイムで単位を表示
 - 基準値を超過した結果の文字色を赤で表示
+- 承認機能
 
 ### 検査結果
 
 - Chart.jsを使って、過去20件分についてのグラフを表示
 - 過去20件分の平均・最大・最小値を表示
+- 承認機能と履歴表示
 
 ### 検査項目マスタ
 
-- Turbo frame、Turbo streamを使って新規登録、編集、削除を非同期化
-- Stimulusを使ってformをモーダル化
+- こちらで登録した検査項目を、各検体の検査結果としてで選択できる。
+- 検査項目ごとに基準値等を設定できる
 
 ### 検体一覧
 
@@ -155,3 +169,7 @@ erDiagram
 - Deviseを使用したユーザー認証
 - adminカラムを追加し、権限を付与されたものしかアクセスできないようにした。
 - アクセス権のあるユーザーは他のユーザーの権限を付与・剥奪できる。
+
+## 工夫した点
+
+- Turbo frame、Turbo streamを使って新規登録、編集、削除を非同期化
