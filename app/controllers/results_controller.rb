@@ -2,9 +2,10 @@ class ResultsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_sample, only: [ :new, :create, :edit, :update, :destroy ]
   before_action :set_test_items, only: [ :new, :create, :edit, :update, :destroy ]
+  before_action :set_result, only: [ :show, :destroy ]
+  before_action :result_approved?, only: [ :edit, :update ]
 
   def show
-    @result = Result.find(params[:id])
     @recent_results = Result.joins(:sample).where(test_item_id: @result.test_item_id, sample: { plant_id: @result.sample.plant_id }).order(sampling_date: :desc).limit(20)
     label = @recent_results.pluck('sample.sampling_date').reverse
     data = @recent_results.pluck(:value).reverse
@@ -42,11 +43,11 @@ class ResultsController < ApplicationController
   end
 
   def edit
-    @result = Result.find(params[:id])
+    # @result = Result.find(params[:id])
   end
 
   def update
-    @result = Result.find(params[:id])
+    # @result = Result.find(params[:id])
     if @result.update(result_params)
       flash.now.notice = '変更しました'
     else
@@ -56,7 +57,6 @@ class ResultsController < ApplicationController
   end
 
   def destroy
-    @result = Result.find(params[:id])
     @result.destroy!
     flash.now.notice = '削除しました'
   end
@@ -72,5 +72,16 @@ class ResultsController < ApplicationController
 
   def set_test_items
     @test_items = TestItem.all.order(:sort_order)
+  end
+
+  def set_result
+    @result = Result.find(params[:id])
+  end
+
+  def result_approved?
+    set_result
+    if @result.approved?
+      redirect_to plant_sample_path(params[:plant_id], params[:sample_id]),  notice: '承認済みの結果は編集できません'
+    end
   end
 end
