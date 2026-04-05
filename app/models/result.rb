@@ -20,6 +20,7 @@ class Result < ApplicationRecord
   has_many :approvals, dependent: :destroy
 
   validates :value, numericality: { allow_nil: true }
+  validate :check_editable
 
   def latest_approval
     approvals.order(created_at: :desc).first
@@ -28,4 +29,11 @@ class Result < ApplicationRecord
   def approved?
     latest_approval&.approved?
   end
+
+  private
+    def check_editable
+      if approved?
+        errors.add(:base, '承認済みの結果は編集できません')
+      end
+    end
 end
