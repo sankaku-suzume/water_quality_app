@@ -9,7 +9,11 @@
     .sample-result_buttons
       = link_to plant_sample_result_path(result.sample.plant, result.sample, result), class: "sample-chart", data: { turbo: false } do
         = image_tag 'chart.svg'
-      = link_to edit_plant_sample_result_path(result.sample.plant, result.sample, result), class: "sample-edit", data: { turbo_frame: 'modal' } do
-        = image_tag 'edit.svg'
+      - unless result.approved?
+        = link_to edit_plant_sample_result_path(result.sample.plant, result.sample, result), class: "sample-edit", data: { turbo_frame: 'modal' } do
+          = image_tag 'edit.svg'
+      - else
+        .sample-edit.inactive
+          = image_tag 'edit.svg'
       = link_to plant_sample_result_path(result.sample.plant, result.sample, result), data: {turbo_method: :delete, turbo_confirm: "この検査結果を削除しますか？" }, class: "sample-delete" do
         = image_tag 'delete.svg'
