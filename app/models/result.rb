@@ -20,4 +20,12 @@ class Result < ApplicationRecord
   has_many :approvals, dependent: :destroy
 
   validates :value, numericality: { allow_nil: true }
+
+  def latest_approval
+    approvals.order(created_at: :desc).first
+  end
+
+  def approved?
+    latest_approval&.approved?
+  end
 end
