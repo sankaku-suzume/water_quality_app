@@ -19,9 +19,18 @@ class Approval < ApplicationRecord
 
   validates :comment, length: { maximum: 100 }
 
+  validate :check_creatable
+
   enum action: {
     requested: 0,
     approved: 1,
     rejected: 2
   }
+
+  private
+    def check_creatable
+      if result.approved?
+        errors.add(:base, '承認済みです')
+      end
+    end
 end

@@ -31,7 +31,7 @@
   %h2.result_approval-title 承認履歴
   = turbo_frame_tag 'approvals-list' do
     .result_approvals#approvals
-      - @result.approvals.each do |approval|
+      - @result_approvals.each do |approval|
         = render 'approval', approval: approval
       - unless @result.approvals.any?
         %p#no_approval_text 承認履歴はまだありません
