@@ -1,6 +1,7 @@
 class ApprovalsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_result, only: [ :new, :create ]
+  before_action :result_approved?, only: [ :new, :create ]
 
   def index
     # 各result_idの最新のapprovalを取得
@@ -50,5 +51,12 @@ class ApprovalsController < ApplicationController
 
   def set_result
     @result = Result.find(params[:result_id])
+  end
+
+  def result_approved?
+    set_result
+    if @result.approved?
+      redirect_to plant_sample_path(params[:plant_id], params[:sample_id]),  notice: '承認済みです'
+    end
   end
 end
