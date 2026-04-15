@@ -16,6 +16,9 @@ class ApprovalsController < ApplicationController
 
   def new
     @approval = @result.approvals.build
+
+    # submitボタンを前のレコードの値で出し分けるための判定用
+    @previous_approval = @result.approvals.order(created_at: :desc).first
   end
 
   def create
