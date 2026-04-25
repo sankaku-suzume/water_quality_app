@@ -23,26 +23,31 @@ class ApprovalsController < ApplicationController
 
   def create
     @approval = @result.approvals.build(approval_params)
+    @approval.action = params[:submit_type]
 
-    case params[:submit_type]
-    when 'requested'
-      @approval.action = 'requested'
-      message_notice = '承認依頼しました'
-      message_error = '承認依頼できませんでした'
-    when 'approved'
-      @approval.action = 'approved'
-      message_notice = '承認しました'
-      message_error = '承認できませんでした'
-    when 'rejected'
-      @approval.action = 'rejected'
-      message_notice = '差戻しました'
-      message_error = '差戻しできませんでした'
-    end
-
-    if @approval.save
-      flash.now.notice = message_notice
+    if @approval.requested?
+      if @approval.save
+        flash.now.notice = '承認依頼しました'
+      else
+        flash.now[:error] = '承認依頼できませんでした'
+        render :new, status: :unprocessable_entity
+      end
+    elsif @approval.approved? && current_user&.admin?
+      if @approval.save
+        flash.now.notice = '承認しました'
+      else
+        flash.now[:error] = '承認できませんでした'
+        render :new, status: :unprocessable_entity
+      end
+    elsif @approval.rejected? && current_user&.admin?
+      if @approval.save
+        flash.now.notice = '差戻しました'
+      else
+        flash.now[:error] = '差戻できませんでした'
+        render :new, status: :unprocessable_entity
+      end
     else
-      flash.now[:error] = message_error
+      flash.now[:error] = '権限がありません'
       render :new, status: :unprocessable_entity
     end
   end
