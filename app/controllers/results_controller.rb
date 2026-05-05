@@ -27,6 +27,7 @@ class ResultsController < ApplicationController
         } ]
       }
     }
+    @result_approvals = @result.approvals.order(created_at: :ASC)
   end
   def new
     @result = @sample.results.build

@@ -19,9 +19,33 @@ class Approval < ApplicationRecord
 
   validates :comment, length: { maximum: 100 }
 
-  enum action: {
+  validate :check_creatable
+  validate :check_previous_action
+
+  enum :action, {
     requested: 0,
     approved: 1,
     rejected: 2
-  }
+  }, validate: true
+
+  private
+  # 承認済みのresultには新たにapprovalは作成できないように
+  def check_creatable
+    if result.approved?
+      errors.add(:base, '承認済みです')
+    end
+  end
+
+  # 現在のactionの状態によって、次のactionを制限
+  def check_previous_action
+    previous_approval = result.approvals.where.not(id: self.id).order(created_at: :desc).first
+
+    if previous_approval.nil? && !self.requested?
+      errors.add(:base, '承認依頼してください')
+    elsif previous_approval&.requested? && self.requested?
+      errors.add(:base, 'すでに承認依頼中です')
+    elsif previous_approval&.rejected? && self.rejected?
+      errors.add(:base, 'すでに差戻中です')
+    end
+  end
 end

@@ -1,12 +1,11 @@
-
-- if !result.approvals.last
+- if !result.approvals.present?
   = link_to "未承認", new_plant_sample_result_approval_path(result.sample.plant, result.sample, result), class: "result_status", data: { turbo_frame: 'modal'}
-- elsif result.approvals.last.action == 'requested'
+- elsif result.latest_approval&.requested?
   -if current_user.admin == true
     = link_to "承認待ち", new_plant_sample_result_approval_path(result.sample.plant, result.sample, result), class: "result_status requested-admin", data: { turbo_frame: 'modal'}
   - else
     .result_status.requested 承認待ち
-- elsif result.approvals.last.action == 'approved'
+- elsif result.latest_approval&.approved?
   .result_status.approved 承認済
-- elsif result.approvals.last.action == 'rejected'
+- elsif result.latest_approval&.rejected?
   = link_to "差戻中", new_plant_sample_result_approval_path(result.sample.plant, result.sample, result), class: "result_status rejected", data: { turbo_frame: 'modal'}
