@@ -7,6 +7,6 @@
       = f.label :email, class: 'user_label'
       %br/
       = f.email_field :email, autofocus: true, autocomplete: "email", class: 'user_form-text'
-    .actions.user_actions
+    .actions
       = f.submit "メールを送信する", class: 'btn btn-new'
   = render "devise/shared/links"
