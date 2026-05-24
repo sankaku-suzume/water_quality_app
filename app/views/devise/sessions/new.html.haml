@@ -1,23 +1,51 @@
-.container
-  %h2 ログイン
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    .field.user_field
-      = f.label :email, class: 'user_label'
-      %br/
-      = f.email_field :email, autofocus: true, autocomplete: "email", class: 'user_form-text'
-    .field.user_field
-      = f.label :password, class: 'user_label'
-      %br/
-      = f.password_field :password, autocomplete: "current-password", class: 'user_form-text'
-    - if devise_mapping.rememberable?
+.login_fv
+  .slide-1
+    = image_tag 'slide1.png'
+  .login_form_container
+    %h2 ログイン
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .field.user_field
-        = f.check_box :remember_me
-        = f.label :remember_me, class: 'user_label'
-    .actions.login_btn
-      = f.submit "ログイン", class: 'btn btn-new'
-  = render "devise/shared/links"
+        = f.label :email, class: 'user_label'
+        %br/
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: 'user_form-text'
+      .field.user_field
+        = f.label :password, class: 'user_label'
+        %br/
+        = f.password_field :password, autocomplete: "current-password", class: 'user_form-text'
+      - if devise_mapping.rememberable?
+        .field.user_field
+          = f.check_box :remember_me
+          = f.label :remember_me, class: 'user_label'
+      .actions.login_btn
+        = f.submit "ログイン", class: 'btn btn-new'
+    = render "devise/shared/links"
 
-  .login_guest.login_btn
-    = button_to 'ゲストログイン', users_guest_sign_in_path, turbo_method: :post, class: 'btn btn-show'
-  .login_guest.login_btn
-    = button_to '管理者としてゲストログイン', users_guest_admin_sign_in_path, turbo_method: :post, class: 'btn btn-show'
+    .login_guest.login_btn
+      = button_to 'ゲストログイン', users_guest_sign_in_path, turbo_method: :post, class: 'btn btn-orange'
+    .login_guest.login_btn
+      = button_to '管理者としてゲストログイン', users_guest_admin_sign_in_path, turbo_method: :post, class: 'btn btn-orange'
+.login_container.introduction
+  %h2.introduction_title 当アプリについて
+  %p.introduction_text 水質検査ラボでの使用を想定した、事業場排水の検査データを管理するアプリです。
+  .login_cards
+    .login_card
+      %h3.login-card_title データ保存
+      .login-card_img
+        = image_tag 'card1.png'
+      %p.login-card_text 採水場所・採水日ごとに水質データを保存<br/>基準値超過は赤色表示
+    .login_card
+      %h3.login-card_title 承認機能
+      .login-card_img
+        = image_tag 'card2.png'
+      %p.login-card_text 検査結果を管理者に承認依頼→管理者が承認or差戻し<br/>要処理事項はトップページで通知
+    .login_card
+      %h3.login-card_title グラフ表示
+      .login-card_img
+        = image_tag 'card3.png'
+      %p.login-card_text 測定値の推移をひと目でわかるグラフで表示<br/>最大値・最小値・平均値も
+    .login_card
+      %h3.login-card_title 検索機能
+      .login-card_img
+        = image_tag 'card4.png'
+      %p.login-card_text 登録済みの事業場名・住所から絞り込み検索
+.footer
