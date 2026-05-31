@@ -1,5 +1,5 @@
 # 水質検査データ管理システム
-<img src="images/toppage.png" width="600">
+<img src="images/toppage2.png" width="600">
 
 ## はじめに
 
