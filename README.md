@@ -2,8 +2,7 @@
 
 <img src="images/login.png" width="600">
 
-アプリURL<br>
-https://water-quality-data-app-fd3bad0a3be9.herokuapp.com/
+<a href="https://water-quality-data-app-fd3bad0a3be9.herokuapp.com/" target="_blank" rel="noopener noreferrer">アプリへのリンク</a>
 
 ## はじめに
 
@@ -140,7 +139,7 @@ erDiagram
 ## 各ページの詳細
 
 ### トップページ
-<img src="images/toppage.png" width="600">
+<img src="images/toppage.png" width="400">
 
 - 承認依頼（差戻し）があれば件数と一覧へのリンクを通知
 - 直近５検体をすぐにアクセスできるよう「最近の検体」としてリンクを表示
